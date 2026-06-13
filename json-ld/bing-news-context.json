@@ -1,0 +1,107 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "bing": "https://api.bing.microsoft.com/v7.0/",
+    "bingNews": "https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/reference/",
+
+    "NewsAnswer": {
+      "@id": "bingNews:response-objects#newsanswer",
+      "@type": "@id"
+    },
+    "NewsArticle": "schema:NewsArticle",
+    "TrendingTopics": {
+      "@id": "bingNews:response-objects#trendingtopics",
+      "@type": "@id"
+    },
+    "Topic": {
+      "@id": "bingNews:response-objects#topic",
+      "@type": "@id"
+    },
+    "Organization": "schema:Organization",
+    "Image": "schema:ImageObject",
+    "Video": "schema:VideoObject",
+    "Query": {
+      "@id": "bingNews:response-objects#query",
+      "@type": "@id"
+    },
+
+    "name": "schema:name",
+    "url": "schema:url",
+    "description": "schema:description",
+    "datePublished": "schema:datePublished",
+    "category": "schema:articleSection",
+    "headline": "schema:headline",
+    "provider": "schema:provider",
+    "image": "schema:image",
+    "video": "schema:video",
+    "mentions": "schema:mentions",
+    "thumbnail": "schema:thumbnail",
+    "contentUrl": "schema:contentUrl",
+    "embedHtml": "schema:embedUrl",
+    "thumbnailUrl": "schema:thumbnailUrl",
+
+    "isBreakingNews": {
+      "@id": "bingNews:response-objects#isBreakingNews",
+      "@type": "xsd:boolean"
+    },
+    "newsSearchUrl": {
+      "@id": "bingNews:response-objects#newsSearchUrl",
+      "@type": "@id"
+    },
+    "webSearchUrl": {
+      "@id": "bingNews:response-objects#webSearchUrl",
+      "@type": "@id"
+    },
+    "totalEstimatedMatches": {
+      "@id": "bingNews:response-objects#totalEstimatedMatches",
+      "@type": "xsd:long"
+    },
+    "clusteredArticles": {
+      "@id": "bingNews:response-objects#clusteredArticles",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "relatedTopics": {
+      "@id": "bingNews:response-objects#relatedTopics",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "sort": {
+      "@id": "bingNews:response-objects#sort",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "value": {
+      "@id": "bingNews:response-objects#value",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "contractualRules": {
+      "@id": "bingNews:response-objects#contractualRules",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "query": {
+      "@id": "bingNews:response-objects#query"
+    },
+    "text": "schema:text",
+    "height": "schema:height",
+    "width": "schema:width",
+    "motionThumbnailUrl": {
+      "@id": "bingNews:response-objects#motionThumbnailUrl",
+      "@type": "@id"
+    },
+    "allowHttpsEmbed": {
+      "@id": "bingNews:response-objects#allowHttpsEmbed",
+      "@type": "xsd:boolean"
+    },
+    "readLink": {
+      "@id": "bingNews:response-objects#readLink",
+      "@type": "@id"
+    },
+    "id": "@id",
+    "_type": "@type",
+
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  }
+}

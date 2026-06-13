@@ -1,0 +1,59 @@
+{
+  "_type": "TrendingTopics",
+  "value": [
+    {
+      "name": "SpaceX Starship Launch",
+      "isBreakingNews": true,
+      "query": {
+        "text": "SpaceX Starship Launch"
+      },
+      "newsSearchUrl": "https://www.bing.com/news/search?q=SpaceX+Starship+Launch&FORM=BNCTLP",
+      "webSearchUrl": "https://www.bing.com/search?q=SpaceX+Starship+Launch&FORM=BNCTLP",
+      "image": {
+        "url": "https://www.bing.com/th?id=OVF.abc123&pid=News",
+        "provider": [
+          {
+            "_type": "Organization",
+            "name": "Space.com"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Super Bowl Championship",
+      "isBreakingNews": false,
+      "query": {
+        "text": "Super Bowl Championship"
+      },
+      "newsSearchUrl": "https://www.bing.com/news/search?q=Super+Bowl+Championship&FORM=BNCTLP",
+      "webSearchUrl": "https://www.bing.com/search?q=Super+Bowl+Championship&FORM=BNCTLP",
+      "image": {
+        "url": "https://www.bing.com/th?id=OVF.def456&pid=News",
+        "provider": [
+          {
+            "_type": "Organization",
+            "name": "ESPN"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Federal Reserve Interest Rate Decision",
+      "isBreakingNews": false,
+      "query": {
+        "text": "Federal Reserve Interest Rate Decision"
+      },
+      "newsSearchUrl": "https://www.bing.com/news/search?q=Federal+Reserve+Interest+Rate+Decision&FORM=BNCTLP",
+      "webSearchUrl": "https://www.bing.com/search?q=Federal+Reserve+Interest+Rate+Decision&FORM=BNCTLP",
+      "image": {
+        "url": "https://www.bing.com/th?id=OVF.ghi789&pid=News",
+        "provider": [
+          {
+            "_type": "Organization",
+            "name": "Reuters"
+          }
+        ]
+      }
+    }
+  ]
+}

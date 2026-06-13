@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://api-evangelist.github.io/bing-news/json-schema/trending-topic.json",
+  "title": "TrendingTopic",
+  "description": "Defines a trending news topic returned by the Bing News Trending Topics API.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The title of the trending topic."
+    },
+    "isBreakingNews": {
+      "type": "boolean",
+      "description": "If true, the topic is considered breaking news."
+    },
+    "query": {
+      "type": "object",
+      "description": "A search query term that returns this trending topic.",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "A query string that returns the trending topic."
+        }
+      },
+      "required": ["text"]
+    },
+    "newsSearchUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "A URL to the Bing News search results for the search query term."
+    },
+    "webSearchUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "A URL to the Bing search results for the search query term."
+    },
+    "image": {
+      "type": "object",
+      "description": "A link to a related image. The Image object contains only the url and provider fields.",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "A URL to the image."
+        },
+        "provider": {
+          "type": "array",
+          "description": "A list of owners of the image.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "_type": {
+                "type": "string",
+                "description": "Type hint."
+              },
+              "name": {
+                "type": "string",
+                "description": "The name of the image provider."
+              }
+            },
+            "required": ["name"]
+          }
+        }
+      }
+    }
+  },
+  "required": ["name", "query"]
+}

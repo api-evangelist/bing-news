@@ -1,0 +1,72 @@
+{
+  "_type": "News",
+  "webSearchUrl": "https://www.bing.com/news",
+  "value": [
+    {
+      "name": "Tech Giants Report Record Quarterly Earnings",
+      "url": "https://example.com/news/tech-earnings-q4-2024",
+      "description": "Major technology companies reported higher-than-expected fourth quarter earnings, driven by cloud computing growth and renewed consumer electronics demand.",
+      "datePublished": "2024-01-15T16:00:00",
+      "category": "Business",
+      "headline": true,
+      "id": "https://api.bing.microsoft.com/api/v7/#News.0",
+      "provider": [
+        {
+          "_type": "Organization",
+          "name": "Financial Times"
+        }
+      ],
+      "image": {
+        "thumbnail": {
+          "contentUrl": "https://www.bing.com/th?id=OVFT.xyz789&pid=News",
+          "width": 700,
+          "height": 466
+        }
+      }
+    },
+    {
+      "name": "New Climate Agreement Reached at International Summit",
+      "url": "https://example.com/news/climate-summit-2024",
+      "description": "World leaders reached a landmark agreement on carbon emissions reduction targets, setting new milestones for renewable energy adoption by 2035.",
+      "datePublished": "2024-01-15T11:30:00",
+      "category": "World",
+      "headline": true,
+      "id": "https://api.bing.microsoft.com/api/v7/#News.1",
+      "provider": [
+        {
+          "_type": "Organization",
+          "name": "The Guardian"
+        }
+      ],
+      "image": {
+        "thumbnail": {
+          "contentUrl": "https://www.bing.com/th?id=OVFT.lmn012&pid=News",
+          "width": 700,
+          "height": 466
+        }
+      }
+    },
+    {
+      "name": "Championship Team Celebrates Historic Victory",
+      "url": "https://example.com/news/championship-victory-2024",
+      "description": "The team secured their third consecutive championship title in a dramatic final match that went to overtime.",
+      "datePublished": "2024-01-14T22:00:00",
+      "category": "Sports",
+      "headline": false,
+      "id": "https://api.bing.microsoft.com/api/v7/#News.2",
+      "provider": [
+        {
+          "_type": "Organization",
+          "name": "ESPN"
+        }
+      ],
+      "image": {
+        "thumbnail": {
+          "contentUrl": "https://www.bing.com/th?id=OVFT.pqr345&pid=News",
+          "width": 700,
+          "height": 466
+        }
+      }
+    }
+  ]
+}

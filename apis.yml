@@ -44,6 +44,8 @@ apis:
         url: rate-limits/bing-news-rate-limits.yml
       - type: FinOps
         url: finops/bing-news-finops.yml
+      - type: OpenAPI
+        url: openapi/bing-news-search-openapi.json
 
   - aid: bing-news:news-category
     name: Bing News Category API

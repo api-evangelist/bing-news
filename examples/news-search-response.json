@@ -1,0 +1,97 @@
+{
+  "_type": "News",
+  "readLink": "https://api.bing.microsoft.com/api/v7/news/search?q=artificial+intelligence",
+  "totalEstimatedMatches": 36500000,
+  "sort": [
+    {
+      "name": "Best match",
+      "id": "relevance",
+      "isSelected": true,
+      "url": "https://api.bing.microsoft.com/api/v7/news/search?q=artificial+intelligence"
+    },
+    {
+      "name": "Most recent",
+      "id": "date",
+      "isSelected": false,
+      "url": "https://api.bing.microsoft.com/api/v7/news/search?q=artificial+intelligence&sortby=date"
+    }
+  ],
+  "value": [
+    {
+      "name": "AI Advances Transform Industries Worldwide",
+      "url": "https://example.com/news/ai-advances-2024",
+      "description": "Artificial intelligence continues to reshape multiple sectors as new models demonstrate unprecedented capabilities in language understanding, image recognition, and autonomous decision-making.",
+      "datePublished": "2024-01-15T14:30:00",
+      "category": "ScienceAndTechnology",
+      "id": "https://api.bing.microsoft.com/api/v7/#News.0",
+      "provider": [
+        {
+          "_type": "Organization",
+          "name": "Tech News Daily"
+        }
+      ],
+      "image": {
+        "thumbnail": {
+          "contentUrl": "https://www.bing.com/th?id=OVFT.abc123&pid=News",
+          "width": 700,
+          "height": 466
+        }
+      },
+      "mentions": [
+        {
+          "name": "OpenAI"
+        },
+        {
+          "name": "Google DeepMind"
+        }
+      ]
+    },
+    {
+      "name": "Machine Learning Breakthroughs in Healthcare",
+      "url": "https://example.com/news/ml-healthcare-2024",
+      "description": "Researchers have achieved new milestones in applying machine learning to medical diagnosis, potentially improving early detection rates for several diseases.",
+      "datePublished": "2024-01-15T12:00:00",
+      "category": "Health",
+      "id": "https://api.bing.microsoft.com/api/v7/#News.1",
+      "provider": [
+        {
+          "_type": "Organization",
+          "name": "Health Tech Review"
+        }
+      ],
+      "image": {
+        "thumbnail": {
+          "contentUrl": "https://www.bing.com/th?id=OVFT.def456&pid=News",
+          "width": 700,
+          "height": 466
+        }
+      },
+      "mentions": [
+        {
+          "name": "Mayo Clinic"
+        },
+        {
+          "name": "Johns Hopkins University"
+        }
+      ]
+    }
+  ],
+  "relatedTopics": [
+    {
+      "name": "generative AI",
+      "webSearchUrl": "https://www.bing.com/search?q=generative+AI",
+      "relatedNews": {
+        "name": "Generative AI Market Projected to Reach Trillions",
+        "url": "https://example.com/news/genai-market-2024",
+        "description": "Market analysts project explosive growth for the generative AI sector over the next five years.",
+        "datePublished": "2024-01-14T10:00:00",
+        "provider": [
+          {
+            "_type": "Organization",
+            "name": "Market Research Weekly"
+          }
+        ]
+      }
+    }
+  ]
+}

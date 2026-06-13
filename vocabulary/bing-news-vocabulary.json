@@ -1,0 +1,180 @@
+{
+  "vocabulary": {
+    "name": "Bing News Search API Vocabulary",
+    "description": "Domain terms and concepts used by the Bing News Search API v7.",
+    "version": "7.0",
+    "source": "https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/overview",
+    "terms": [
+      {
+        "term": "NewsAnswer",
+        "definition": "The top-level response object returned by the /news/search and /news endpoints when the request succeeds.",
+        "type": "ResponseObject"
+      },
+      {
+        "term": "TrendingTopics",
+        "definition": "The top-level response object returned by the /news/trendingtopics endpoint, containing a list of currently trending news topics on social networks.",
+        "type": "ResponseObject"
+      },
+      {
+        "term": "NewsArticle",
+        "definition": "A single news article returned in a news search or category response, including title, URL, description, publication date, image thumbnail, and provider metadata.",
+        "type": "ResponseObject"
+      },
+      {
+        "term": "Topic",
+        "definition": "A single trending news topic including its name, query term, related search URLs, and an optional image.",
+        "type": "ResponseObject"
+      },
+      {
+        "term": "Organization",
+        "definition": "Defines the news provider (publisher) that ran or owns a news article or image.",
+        "type": "ResponseObject"
+      },
+      {
+        "term": "Image",
+        "definition": "A thumbnail image associated with a news article or trending topic.",
+        "type": "ResponseObject"
+      },
+      {
+        "term": "Thumbnail",
+        "definition": "A link to a thumbnail image, including its URL and dimensions in pixels.",
+        "type": "ResponseObject"
+      },
+      {
+        "term": "MediaSize",
+        "definition": "The width and height dimensions of media content such as video thumbnails.",
+        "type": "ResponseObject"
+      },
+      {
+        "term": "Video",
+        "definition": "A video related to a news article, including embed HTML, motion thumbnail, and thumbnail URL.",
+        "type": "ResponseObject"
+      },
+      {
+        "term": "Query",
+        "definition": "A search query string used to retrieve a trending topic.",
+        "type": "ResponseObject"
+      },
+      {
+        "term": "RelatedTopic",
+        "definition": "A list of news articles related to the original search query, paired with a query term and web search URL.",
+        "type": "ResponseObject"
+      },
+      {
+        "term": "SortValue",
+        "definition": "An option for sorting news search results, either by relevance or by date.",
+        "type": "ResponseObject"
+      },
+      {
+        "term": "TextAttribution",
+        "definition": "A contractual rule requiring plain text attribution to be displayed with a news article.",
+        "type": "ResponseObject"
+      },
+      {
+        "term": "Error",
+        "definition": "Describes an individual error that occurred in processing a request.",
+        "type": "ResponseObject"
+      },
+      {
+        "term": "ErrorResponse",
+        "definition": "The top-level object returned when a request fails, containing a list of Error objects.",
+        "type": "ResponseObject"
+      },
+      {
+        "term": "freshness",
+        "definition": "A query parameter that filters news articles by age: Day (last 24 hours), Week (last 7 days), or Month (last 30 days). Only applicable to /news/search.",
+        "type": "QueryParameter"
+      },
+      {
+        "term": "safeSearch",
+        "definition": "A query parameter controlling adult content filtering. Values: Off, Moderate (default), Strict.",
+        "type": "QueryParameter"
+      },
+      {
+        "term": "mkt",
+        "definition": "The market where results come from, in the form <language>-<country> (e.g., en-US). Mutually exclusive with the cc parameter.",
+        "type": "QueryParameter"
+      },
+      {
+        "term": "cc",
+        "definition": "A 2-character country code that, combined with the Accept-Language header, determines the market. Mutually exclusive with the mkt parameter.",
+        "type": "QueryParameter"
+      },
+      {
+        "term": "category",
+        "definition": "A query parameter for the /news endpoint specifying the category of news to return (e.g., Sports, Business, Entertainment, Health, ScienceAndTechnology, Politics, World). Categories vary by market.",
+        "type": "QueryParameter"
+      },
+      {
+        "term": "since",
+        "definition": "A UNIX epoch timestamp used with the /news/trendingtopics endpoint to return only topics discovered on or after that time. Requires sortBy=Date.",
+        "type": "QueryParameter"
+      },
+      {
+        "term": "originalImg",
+        "definition": "When true, news article Image objects include the contentUrl pointing to the original image on the publisher website. When false, only the thumbnail is included.",
+        "type": "QueryParameter"
+      },
+      {
+        "term": "textDecorations",
+        "definition": "When true, display strings may include hit highlighting markers. Used with the textFormat parameter.",
+        "type": "QueryParameter"
+      },
+      {
+        "term": "textFormat",
+        "definition": "The type of markers used for text decorations: Raw (Unicode) or HTML (HTML tags).",
+        "type": "QueryParameter"
+      },
+      {
+        "term": "Ocp-Apim-Subscription-Key",
+        "definition": "The required request header containing the Azure subscription key for authenticating Bing News Search API requests.",
+        "type": "RequestHeader"
+      },
+      {
+        "term": "X-MSEdge-ClientID",
+        "definition": "An optional request/response header that Bing uses to provide consistent behavior across API calls for a specific user on a specific device. Should be persisted and reused across sessions.",
+        "type": "RequestHeader"
+      },
+      {
+        "term": "X-MSEdge-ClientIP",
+        "definition": "An optional request header containing the IPv4 or IPv6 address of the client device, used to discover the user's location for safe search and local relevance.",
+        "type": "RequestHeader"
+      },
+      {
+        "term": "X-Search-Location",
+        "definition": "An optional request header containing semicolon-delimited key/value pairs describing the client's geographical location (lat, long, re, ts, etc.).",
+        "type": "RequestHeader"
+      },
+      {
+        "term": "BingAPIs-Market",
+        "definition": "A response header containing the market used by the request, in <languageCode>-<countryCode> form.",
+        "type": "ResponseHeader"
+      },
+      {
+        "term": "BingAPIs-TraceId",
+        "definition": "A response header containing the ID of the log entry for the request. Useful for debugging and support.",
+        "type": "ResponseHeader"
+      },
+      {
+        "term": "headline",
+        "definition": "A boolean field on NewsArticle that indicates whether the article is a headline. Only included in category requests that do not specify a specific category.",
+        "type": "Field"
+      },
+      {
+        "term": "isBreakingNews",
+        "definition": "A boolean field on Topic that indicates whether a trending topic qualifies as breaking news.",
+        "type": "Field"
+      },
+      {
+        "term": "totalEstimatedMatches",
+        "definition": "The estimated total number of news articles matching the search query. Used with count and offset for pagination.",
+        "type": "Field"
+      },
+      {
+        "term": "contractualRules",
+        "definition": "A list of rules on NewsArticle that must be followed when displaying the article. May include TextAttribution rules. Only present in Web Search API responses.",
+        "type": "Field"
+      }
+    ]
+  }
+}

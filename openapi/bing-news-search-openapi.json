@@ -1,0 +1,915 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Bing News Search API v7",
+    "description": "The Bing News Search REST API enables developers to retrieve relevant news articles, trending topics, and category-filtered news with image thumbnails and publisher metadata. The API provides search queries against Bing's news index, returning results with titles, descriptions, URLs, publication dates, and related media content.",
+    "version": "7.0",
+    "contact": {
+      "name": "Microsoft Bing Support",
+      "url": "https://learn.microsoft.com/en-us/answers/tags/142/bing-category-bing-search-apis-azure-bing-news"
+    },
+    "termsOfService": "https://www.microsoft.com/en-us/bing/apis/legal",
+    "license": {
+      "name": "Microsoft Bing APIs Terms of Use",
+      "url": "https://www.microsoft.com/en-us/bing/apis/legal"
+    },
+    "x-api-id": "bing-news",
+    "x-retired": true,
+    "x-retirement-note": "Bing Search APIs are retired as a standalone Azure Cognitive Service. Existing subscriptions were honored through October 2023."
+  },
+  "servers": [
+    {
+      "url": "https://api.bing.microsoft.com/v7.0",
+      "description": "Bing News Search API v7"
+    }
+  ],
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "paths": {
+    "/news/search": {
+      "get": {
+        "operationId": "NewsSearch",
+        "summary": "Search News Articles",
+        "description": "Returns news articles relevant to a user's search query. Supports filtering by freshness, market, safe search level, and category. Results include article titles, descriptions, URLs, publication times, image thumbnails, and publisher metadata. If the search query is empty, the call returns the top news articles.",
+        "tags": ["News Search"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OcpApimSubscriptionKey"
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "The user's search query term. If the term is empty (e.g., q=), the response includes the top news stories. The term may contain Bing Advanced Operators.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "$ref": "#/components/parameters/mkt"
+          },
+          {
+            "$ref": "#/components/parameters/cc"
+          },
+          {
+            "$ref": "#/components/parameters/setLang"
+          },
+          {
+            "$ref": "#/components/parameters/safeSearch"
+          },
+          {
+            "name": "freshness",
+            "in": "query",
+            "required": false,
+            "description": "Filter news articles by age. Use this parameter only when calling the /news/search endpoint.",
+            "schema": {
+              "type": "string",
+              "enum": ["Day", "Week", "Month"]
+            }
+          },
+          {
+            "name": "originalImg",
+            "in": "query",
+            "required": false,
+            "description": "If true, the Image object includes the contentUrl field pointing to the original image on the publisher's website. Otherwise, only the thumbnail field is included. Use this parameter only with /news/search.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "$ref": "#/components/parameters/textDecorations"
+          },
+          {
+            "$ref": "#/components/parameters/textFormat"
+          }
+        ],
+        "requestBody": null,
+        "responses": {
+          "200": {
+            "description": "Successful news search response",
+            "headers": {
+              "BingAPIs-Market": {
+                "$ref": "#/components/headers/BingAPIs-Market"
+              },
+              "BingAPIs-TraceId": {
+                "$ref": "#/components/headers/BingAPIs-TraceId"
+              },
+              "X-MSEdge-ClientID": {
+                "$ref": "#/components/headers/X-MSEdge-ClientID"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewsAnswer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid query parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - invalid or missing subscription key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - quota exceeded or access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests - rate limit exceeded",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before sending another request",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/news": {
+      "get": {
+        "operationId": "NewsByCategory",
+        "summary": "Get Top News by Category",
+        "description": "Returns top news articles filtered by category (e.g., Business, Entertainment, Sports, Health, ScienceAndTechnology, Politics, World). Supports multiple markets with locale-specific category taxonomies. No search query is required; results reflect top headlines for the chosen category in the specified market.",
+        "tags": ["News Category"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OcpApimSubscriptionKey"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "description": "The category of news articles to return. Use this parameter only with the /news endpoint. If not specified, the response includes up to 10 headline news articles typically published in the last 24 hours from any category.",
+            "schema": {
+              "type": "string",
+              "example": "Sports"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/mkt"
+          },
+          {
+            "$ref": "#/components/parameters/cc"
+          },
+          {
+            "$ref": "#/components/parameters/setLang"
+          },
+          {
+            "$ref": "#/components/parameters/safeSearch"
+          },
+          {
+            "$ref": "#/components/parameters/textDecorations"
+          },
+          {
+            "$ref": "#/components/parameters/textFormat"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful category news response",
+            "headers": {
+              "BingAPIs-Market": {
+                "$ref": "#/components/headers/BingAPIs-Market"
+              },
+              "BingAPIs-TraceId": {
+                "$ref": "#/components/headers/BingAPIs-TraceId"
+              },
+              "X-MSEdge-ClientID": {
+                "$ref": "#/components/headers/X-MSEdge-ClientID"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewsAnswer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before sending another request",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/news/trendingtopics": {
+      "get": {
+        "operationId": "TrendingTopics",
+        "summary": "Get Trending News Topics",
+        "description": "Returns news topics that are currently trending on social networks. Supports filtering by Unix epoch timestamp (since parameter) to retrieve topics discovered after a specific point in time. Results include topic names, related search queries, and image thumbnails. Only available in supported markets.",
+        "tags": ["Trending Topics"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OcpApimSubscriptionKey"
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "required": false,
+            "description": "The UNIX epoch time (Unix timestamp) that Bing uses to select the trending topics. Bing returns trending topics that it discovered on or after the specified date and time. To use this parameter, also specify the sortBy parameter and set it to Date.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "required": false,
+            "description": "The order to return news topics in. If using Trending News API and specifying the since query parameter, you must set this parameter to Date.",
+            "schema": {
+              "type": "string",
+              "enum": ["Date", "Relevance"]
+            }
+          },
+          {
+            "$ref": "#/components/parameters/mkt"
+          },
+          {
+            "$ref": "#/components/parameters/cc"
+          },
+          {
+            "$ref": "#/components/parameters/setLang"
+          },
+          {
+            "$ref": "#/components/parameters/safeSearch"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful trending topics response",
+            "headers": {
+              "BingAPIs-Market": {
+                "$ref": "#/components/headers/BingAPIs-Market"
+              },
+              "BingAPIs-TraceId": {
+                "$ref": "#/components/headers/BingAPIs-TraceId"
+              },
+              "X-MSEdge-ClientID": {
+                "$ref": "#/components/headers/X-MSEdge-ClientID"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrendingTopics"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before sending another request",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Ocp-Apim-Subscription-Key",
+        "description": "The subscription key received when signing up for the Bing News Search service in the Azure Portal."
+      }
+    },
+    "parameters": {
+      "OcpApimSubscriptionKey": {
+        "name": "Ocp-Apim-Subscription-Key",
+        "in": "header",
+        "required": true,
+        "description": "The subscription key that you received when you signed up for this service in Azure Portal.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "count": {
+        "name": "count",
+        "in": "query",
+        "required": false,
+        "description": "The number of news articles to return in the response. The actual number delivered may be less than requested. The default is 10 and the maximum is 100. Use this parameter only when calling the /news/search endpoint.",
+        "schema": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
+          "default": 10
+        }
+      },
+      "offset": {
+        "name": "offset",
+        "in": "query",
+        "required": false,
+        "description": "The zero-based offset that indicates the number of news articles to skip before returning results. The default is 0. Use this parameter only when calling the /news/search endpoint.",
+        "schema": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 0
+        }
+      },
+      "mkt": {
+        "name": "mkt",
+        "in": "query",
+        "required": false,
+        "description": "The market where the results come from. Typically the country where the user is making the request from. The market must be in the form <language>-<country/region>. For example, en-US. This parameter and the cc query parameter are mutually exclusive.",
+        "schema": {
+          "type": "string",
+          "example": "en-US"
+        }
+      },
+      "cc": {
+        "name": "cc",
+        "in": "query",
+        "required": false,
+        "description": "A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive.",
+        "schema": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 2,
+          "example": "US"
+        }
+      },
+      "setLang": {
+        "name": "setLang",
+        "in": "query",
+        "required": false,
+        "description": "The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. This parameter and the Accept-Language header are mutually exclusive.",
+        "schema": {
+          "type": "string",
+          "example": "en"
+        }
+      },
+      "safeSearch": {
+        "name": "safeSearch",
+        "in": "query",
+        "required": false,
+        "description": "Used to filter news articles for adult content. The default is Moderate.",
+        "schema": {
+          "type": "string",
+          "enum": ["Off", "Moderate", "Strict"],
+          "default": "Moderate"
+        }
+      },
+      "textDecorations": {
+        "name": "textDecorations",
+        "in": "query",
+        "required": false,
+        "description": "A Boolean value that determines whether display strings in the results should contain decoration markers such as hit highlighting characters. The default is false.",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "textFormat": {
+        "name": "textFormat",
+        "in": "query",
+        "required": false,
+        "description": "The type of markers to use for text decorations (see the textDecorations query parameter). Raw uses Unicode characters; HTML uses HTML tags.",
+        "schema": {
+          "type": "string",
+          "enum": ["Raw", "HTML"],
+          "default": "Raw"
+        }
+      }
+    },
+    "headers": {
+      "BingAPIs-Market": {
+        "description": "The market used by the request. The form is <languageCode>-<countryCode>. For example, en-US.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "BingAPIs-TraceId": {
+        "description": "The ID of the log entry that contains the details of the request. Capture this ID when an error occurs.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "X-MSEdge-ClientID": {
+        "description": "Bing uses this header to provide users with consistent behavior across Bing API calls. Persist and reuse across sessions for a given user on a given device.",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "schemas": {
+      "NewsAnswer": {
+        "type": "object",
+        "description": "The top-level object that the response includes when the news request succeeds.",
+        "properties": {
+          "_type": {
+            "type": "string",
+            "description": "Type hint."
+          },
+          "id": {
+            "type": "string",
+            "description": "An ID that uniquely identifies the news answer. Only Web Search API responses include this field."
+          },
+          "readLink": {
+            "type": "string",
+            "description": "A URL to request news from News Search API. Only Web Search API responses include this field."
+          },
+          "relatedTopics": {
+            "type": "array",
+            "description": "A list of news articles that are related to the search term. Only the News Search API includes this field.",
+            "items": {
+              "$ref": "#/components/schemas/RelatedTopic"
+            }
+          },
+          "sort": {
+            "type": "array",
+            "description": "A list of options for sorting the news articles. Only the News Search API includes this field.",
+            "items": {
+              "$ref": "#/components/schemas/SortValue"
+            }
+          },
+          "totalEstimatedMatches": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The estimated number of news articles that are relevant to the query. Only the News Search API includes this field."
+          },
+          "value": {
+            "type": "array",
+            "description": "A list of news articles that are relevant to the query term. If there are no results to return, the array is empty.",
+            "items": {
+              "$ref": "#/components/schemas/NewsArticle"
+            }
+          },
+          "webSearchUrl": {
+            "type": "string",
+            "description": "A URL to the top news stories on Bing. Included only for /news requests."
+          }
+        }
+      },
+      "NewsArticle": {
+        "type": "object",
+        "description": "Defines a news article.",
+        "properties": {
+          "about": {
+            "type": "array",
+            "description": "For internal use only.",
+            "items": {
+              "type": "object"
+            }
+          },
+          "category": {
+            "type": "string",
+            "description": "The news category that the article belongs to. For example, Sports. If the news category cannot be determined, the article does not include this field."
+          },
+          "clusteredArticles": {
+            "type": "array",
+            "description": "A list of related news articles.",
+            "items": {
+              "$ref": "#/components/schemas/NewsArticle"
+            }
+          },
+          "contractualRules": {
+            "type": "array",
+            "description": "A list of rules that you must adhere to if you display the article.",
+            "items": {
+              "type": "object"
+            }
+          },
+          "datePublished": {
+            "type": "string",
+            "description": "The date and time that Bing discovered the article. The date is in the format YYYY-MM-DDTHH:MM:SS.",
+            "example": "2024-01-15T14:30:00"
+          },
+          "description": {
+            "type": "string",
+            "description": "A short description of the news article."
+          },
+          "headline": {
+            "type": "boolean",
+            "description": "A Boolean value that indicates whether the news article is a headline. Included only for news categories requests that do not specify the category query parameter."
+          },
+          "id": {
+            "type": "string",
+            "description": "An ID that uniquely identifies this article in the list of articles."
+          },
+          "image": {
+            "$ref": "#/components/schemas/Image",
+            "description": "An image related to the news article. The Image object in this context contains only the thumbnail field."
+          },
+          "mentions": {
+            "type": "array",
+            "description": "A list of entities (places or persons) mentioned in the article.",
+            "items": {
+              "$ref": "#/components/schemas/Thing"
+            }
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the article. Use this name along with the URL to create a hyperlink."
+          },
+          "provider": {
+            "type": "array",
+            "description": "A list of providers that ran the article.",
+            "items": {
+              "$ref": "#/components/schemas/Organization"
+            }
+          },
+          "url": {
+            "type": "string",
+            "description": "A URL to the news article. Use this URL along with name to create a hyperlink."
+          },
+          "video": {
+            "$ref": "#/components/schemas/Video",
+            "description": "A video that's related to the news article."
+          }
+        }
+      },
+      "TrendingTopics": {
+        "type": "object",
+        "description": "The top-level object that the response includes when the trending topics request succeeds.",
+        "properties": {
+          "value": {
+            "type": "array",
+            "description": "A list of trending news topics on Bing. If there are no results to return, the array is empty.",
+            "items": {
+              "$ref": "#/components/schemas/Topic"
+            }
+          }
+        }
+      },
+      "Topic": {
+        "type": "object",
+        "description": "Defines a trending news topic.",
+        "properties": {
+          "image": {
+            "$ref": "#/components/schemas/Image",
+            "description": "A link to a related image. The Image object contains only the url and provider fields."
+          },
+          "isBreakingNews": {
+            "type": "boolean",
+            "description": "A Boolean value that indicates whether the topic is considered breaking news."
+          },
+          "name": {
+            "type": "string",
+            "description": "The title of the trending topic."
+          },
+          "newsSearchUrl": {
+            "type": "string",
+            "description": "A URL to the Bing News search results for the search query term."
+          },
+          "query": {
+            "$ref": "#/components/schemas/Query",
+            "description": "A search query term that returns this trending topic."
+          },
+          "webSearchUrl": {
+            "type": "string",
+            "description": "A URL to the Bing search results for the search query term."
+          }
+        }
+      },
+      "Image": {
+        "type": "object",
+        "description": "Defines a thumbnail image.",
+        "properties": {
+          "provider": {
+            "type": "array",
+            "description": "A list of owners of the image.",
+            "items": {
+              "$ref": "#/components/schemas/Organization"
+            }
+          },
+          "thumbnail": {
+            "$ref": "#/components/schemas/Thumbnail",
+            "description": "A link to a thumbnail of the image."
+          },
+          "url": {
+            "type": "string",
+            "description": "A URL to the image."
+          }
+        }
+      },
+      "Thumbnail": {
+        "type": "object",
+        "description": "Defines a link to the related image.",
+        "properties": {
+          "contentUrl": {
+            "type": "string",
+            "description": "The URL to the image."
+          },
+          "height": {
+            "type": "integer",
+            "description": "The height of the image in pixels."
+          },
+          "width": {
+            "type": "integer",
+            "description": "The width of the image in pixels."
+          }
+        }
+      },
+      "MediaSize": {
+        "type": "object",
+        "description": "Defines the size of the media content.",
+        "properties": {
+          "height": {
+            "type": "integer",
+            "description": "The height of the media content, in pixels."
+          },
+          "width": {
+            "type": "integer",
+            "description": "The width of the media content, in pixels."
+          }
+        }
+      },
+      "Organization": {
+        "type": "object",
+        "description": "Defines the provider that ran the article.",
+        "properties": {
+          "_type": {
+            "type": "string",
+            "description": "Type hint."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the provider that ran the article."
+          }
+        }
+      },
+      "Query": {
+        "type": "object",
+        "description": "Defines the search query string.",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "A query string that returns the trending topic."
+          }
+        }
+      },
+      "RelatedTopic": {
+        "type": "object",
+        "description": "Defines a list of news articles that are related to the search query.",
+        "properties": {
+          "relatedNews": {
+            "$ref": "#/components/schemas/NewsArticle",
+            "description": "A list of related news articles."
+          },
+          "name": {
+            "type": "string",
+            "description": "The query term that returned the related news articles."
+          },
+          "webSearchUrl": {
+            "type": "string",
+            "description": "A URL that takes the user to the Bing search results for the related query."
+          }
+        }
+      },
+      "SortValue": {
+        "type": "object",
+        "description": "Defines a sort order to use for the request.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "An identifier that identifies the articles sort order.",
+            "enum": ["date", "relevance"]
+          },
+          "isSelected": {
+            "type": "boolean",
+            "description": "A Boolean value that determines whether the response used this sort order."
+          },
+          "name": {
+            "type": "string",
+            "description": "The display name of the sort order."
+          },
+          "url": {
+            "type": "string",
+            "description": "A URL that you can use to make the same request using this sort order."
+          }
+        }
+      },
+      "Thing": {
+        "type": "object",
+        "description": "Defines an entity that the article mentions.",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the entity that the article mentions."
+          }
+        }
+      },
+      "Video": {
+        "type": "object",
+        "description": "Defines a video that's related to the news article.",
+        "properties": {
+          "allowHttpsEmbed": {
+            "type": "boolean",
+            "description": "A Boolean value that determines whether you may embed the video on pages that use the HTTPS protocol."
+          },
+          "embedHtml": {
+            "type": "string",
+            "description": "An iFrame that lets you embed and run the video in your webpage."
+          },
+          "motionThumbnailUrl": {
+            "type": "string",
+            "description": "A URL to an animated thumbnail that shows a preview of the video."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the video."
+          },
+          "thumbnail": {
+            "$ref": "#/components/schemas/MediaSize",
+            "description": "The width and height of the thumbnail image or motion thumbnail."
+          },
+          "thumbnailUrl": {
+            "type": "string",
+            "description": "A URL to a thumbnail image of the video."
+          }
+        }
+      },
+      "TextAttribution": {
+        "type": "object",
+        "description": "Defines a contractual rule for plain text attribution.",
+        "properties": {
+          "_type": {
+            "type": "string",
+            "description": "A type hint, which is set to TextAttribution."
+          },
+          "text": {
+            "type": "string",
+            "description": "The attribution text. Should be displayed immediately following the article's presentation."
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "description": "Defines the error that occurred.",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code that identifies the category of error."
+          },
+          "message": {
+            "type": "string",
+            "description": "A description of the error."
+          },
+          "moreDetails": {
+            "type": "string",
+            "description": "A description that provides additional information about the error."
+          },
+          "parameter": {
+            "type": "string",
+            "description": "The query parameter in the request that caused the error."
+          },
+          "subCode": {
+            "type": "string",
+            "description": "The error code that identifies the error."
+          },
+          "value": {
+            "type": "string",
+            "description": "The query parameter's value that was not valid."
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "description": "The top-level object that the response includes when the request fails.",
+        "properties": {
+          "_type": {
+            "type": "string",
+            "description": "Type hint, which is set to ErrorResponse."
+          },
+          "errors": {
+            "type": "array",
+            "description": "A list of errors that describe the reasons why the request failed.",
+            "items": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "News Search",
+      "description": "Search for news articles by keyword query"
+    },
+    {
+      "name": "News Category",
+      "description": "Get top news articles by category"
+    },
+    {
+      "name": "Trending Topics",
+      "description": "Get currently trending news topics from social networks"
+    }
+  ],
+  "externalDocs": {
+    "description": "Bing News Search API Documentation",
+    "url": "https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/overview"
+  }
+}
