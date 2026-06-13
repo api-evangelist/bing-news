@@ -1,0 +1,116 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Bing News Search
+providerId: bing-news
+created: '2026-06-13'
+modified: '2026-06-13'
+tags:
+  - News
+  - Search
+  - Microsoft
+  - Bing
+  - Headlines
+  - Trending Topics
+description: >-
+  Machine-readable plans and pricing for the Bing News Search API. The API was part of
+  Bing Search Services (retired August 11, 2025). Historical tiers included a free F1
+  tier (1,000 transactions/month) and paid S1 tier (~$7 per 1,000 transactions). Values
+  below reflect the last published pricing before retirement.
+plans:
+  - id: bing-news-free
+    name: Free (F1)
+    type: freemium
+    description: >-
+      Free entry tier for the Bing News Search API. Provided 1,000 transactions per month
+      at no cost. Suitable for evaluation and low-volume prototyping. This tier was
+      available via Azure AI Services before the API's retirement on August 11, 2025.
+    entries:
+      - label: Monthly Transactions
+        description: Free monthly transaction quota across all News Search endpoints
+        name: api_requests
+        type: quota
+        metric: requests
+        limit: 1000
+        timeFrame: month
+        geo: global
+        domains:
+          - https://api.bing.microsoft.com/v7.0/news
+          - https://api.bing.microsoft.com/v7.0/news/search
+          - https://api.bing.microsoft.com/v7.0/news/trendingtopics
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Rate Limit
+        description: Queries per second on the free tier
+        name: rate_limit
+        type: rate
+        metric: requests_per_second
+        limit: 3
+        timeFrame: second
+        geo: global
+        domains:
+          - https://api.bing.microsoft.com/v7.0/news
+          - https://api.bing.microsoft.com/v7.0/news/search
+          - https://api.bing.microsoft.com/v7.0/news/trendingtopics
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: News Search Endpoint
+      - name: News Category Endpoint
+      - name: Trending Topics Endpoint
+      - name: JSON Responses
+      - name: Community Support
+
+  - id: bing-news-s1
+    name: Standard (S1)
+    type: paid
+    description: >-
+      Paid production tier for the Bing News Search API. Priced at approximately
+      $7 per 1,000 transactions with higher rate limits. Supported all three
+      News Search endpoints with up to 100 QPS. This tier was available via
+      Azure AI Services before the API's retirement on August 11, 2025.
+    entries:
+      - label: Transactions
+        description: Per-1,000-transaction billing unit
+        name: api_requests
+        type: metered
+        metric: requests
+        limit: -1
+        timeFrame: month
+        geo: global
+        domains:
+          - https://api.bing.microsoft.com/v7.0/news
+          - https://api.bing.microsoft.com/v7.0/news/search
+          - https://api.bing.microsoft.com/v7.0/news/trendingtopics
+        unit: 1000
+        price: '7.00'
+        userMultiplied: false
+      - label: Rate Limit
+        description: Queries per second on the standard paid tier
+        name: rate_limit
+        type: rate
+        metric: requests_per_second
+        limit: 100
+        timeFrame: second
+        geo: global
+        domains:
+          - https://api.bing.microsoft.com/v7.0/news
+          - https://api.bing.microsoft.com/v7.0/news/search
+          - https://api.bing.microsoft.com/v7.0/news/trendingtopics
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: News Search Endpoint
+      - name: News Category Endpoint
+      - name: Trending Topics Endpoint
+      - name: JSON and JSON-LD Responses
+      - name: Image Thumbnails
+      - name: Publisher Metadata
+      - name: Azure Support
+      - name: SLA
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

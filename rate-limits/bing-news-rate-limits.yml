@@ -1,0 +1,163 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Bing News Search
+providerId: bing-news
+created: '2026-06-13'
+modified: '2026-06-13'
+tags:
+  - News
+  - Search
+  - Microsoft
+  - Bing
+  - Rate Limiting
+  - Quotas
+  - Throttling
+description: >-
+  Machine-readable rate limit definitions for the Bing News Search API v7.
+  Rate limits vary by subscription tier. The API returned a Retry-After header
+  when throttled (HTTP 429). The API was retired on August 11, 2025.
+headers:
+  retryAfter: Retry-After
+  traceId: BingAPIs-TraceId
+  market: BingAPIs-Market
+  clientId: X-MSEdge-ClientID
+responseCodes:
+  throttled: 429
+  notFound: 404
+  serviceUnavailable: 503
+limits:
+  - tier: free
+    name: Free Tier (F1) - Queries Per Second
+    scope: api-key
+    metric: requests_per_second
+    limit: 3
+    burst: 3
+    timeFrame: second
+    applies:
+      - Bing News Search API
+      - Bing News Category API
+      - Bing Trending News Topics API
+
+  - tier: free
+    name: Free Tier (F1) - Monthly Quota
+    scope: api-key
+    metric: requests_per_month
+    limit: 1000
+    timeFrame: month
+    applies:
+      - Bing News Search API
+      - Bing News Category API
+      - Bing Trending News Topics API
+
+  - tier: standard
+    name: Standard Tier (S1) - Queries Per Second
+    scope: api-key
+    metric: requests_per_second
+    limit: 100
+    burst: 100
+    timeFrame: second
+    applies:
+      - Bing News Search API
+      - Bing News Category API
+      - Bing Trending News Topics API
+
+endpoints:
+  - path: /v7.0/news/search
+    method: GET
+    parameters:
+      - name: count
+        description: Number of news articles to return; default 10, max 100
+        type: UnsignedShort
+        required: false
+      - name: offset
+        description: Zero-based offset for paging results
+        type: UnsignedShort
+        required: false
+      - name: q
+        description: User search query term; required for search endpoint
+        type: String
+        required: true
+      - name: freshness
+        description: Filter by age (Day, Week, Month)
+        type: String
+        required: false
+      - name: mkt
+        description: Market locale (e.g., en-US)
+        type: String
+        required: false
+      - name: safeSearch
+        description: Adult content filter (Off, Moderate, Strict)
+        type: String
+        required: false
+      - name: sortBy
+        description: Result ordering (Date, Relevance)
+        type: String
+        required: false
+      - name: originalImg
+        description: Return original image contentUrl vs thumbnail only
+        type: Boolean
+        required: false
+      - name: textDecorations
+        description: Include hit-highlighting decoration markers
+        type: Boolean
+        required: false
+      - name: textFormat
+        description: Decoration marker format (Raw, HTML)
+        type: String
+        required: false
+
+  - path: /v7.0/news
+    method: GET
+    parameters:
+      - name: category
+        description: News category (e.g., Sports, Business, Entertainment)
+        type: String
+        required: false
+      - name: mkt
+        description: Market locale (e.g., en-US)
+        type: String
+        required: false
+      - name: safeSearch
+        description: Adult content filter (Off, Moderate, Strict)
+        type: String
+        required: false
+
+  - path: /v7.0/news/trendingtopics
+    method: GET
+    parameters:
+      - name: mkt
+        description: Market locale; only supported markets return trending topics
+        type: String
+        required: false
+      - name: since
+        description: Unix epoch timestamp; return topics discovered on or after this time
+        type: Integer
+        required: false
+      - name: sortBy
+        description: Result ordering; must be Date when using since parameter
+        type: String
+        required: false
+
+policies:
+  - name: Retry-After Compliance
+    description: >-
+      When HTTP 429 is returned, clients must honor the Retry-After response header
+      value (in seconds) before issuing another request.
+  - name: Exponential Backoff
+    description: >-
+      Clients should implement exponential backoff with jitter when encountering
+      repeated 429 responses beyond the Retry-After window.
+  - name: Monthly Quota Reset
+    description: >-
+      Monthly transaction quotas reset at the start of each calendar month in UTC.
+  - name: URL Length Limit
+    description: >-
+      Maximum URL length is 2,048 characters. Query parameters should be kept
+      under 1,500 characters to avoid 404 Not Found errors.
+  - name: HTTPS Required
+    description: >-
+      All requests must use the HTTPS protocol; HTTP requests are not accepted.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

@@ -1,0 +1,120 @@
+aid: bing-news
+url: https://raw.githubusercontent.com/api-evangelist/bing-news/refs/heads/main/apis.yml
+name: Bing News Search
+description: >-
+  Microsoft Bing News Search REST API enables developers to retrieve relevant news articles,
+  trending topics, and category-filtered news with image thumbnails and publisher metadata.
+  The API provides search queries against Bing's news index, returning results with titles,
+  descriptions, URLs, publication dates, and related media content.
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - News
+  - Search
+  - Microsoft
+  - Bing
+  - Media
+  - Headlines
+  - Trending Topics
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+apis:
+  - aid: bing-news:news-search
+    name: Bing News Search API
+    description: >-
+      Returns news articles relevant to a user's search query. Supports filtering by
+      freshness, market, safe search level, and category. Results include article titles,
+      descriptions, URLs, publication times, image thumbnails, and publisher metadata.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/overview
+    baseURL: https://api.bing.microsoft.com/v7.0/news/search
+    tags:
+      - News
+      - Search
+      - Bing
+      - Microsoft
+    properties:
+      - type: Documentation
+        url: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/overview
+      - type: APIReference
+        url: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/reference/endpoints
+      - type: Plans
+        url: plans/bing-news-plans-pricing.yml
+      - type: RateLimits
+        url: rate-limits/bing-news-rate-limits.yml
+      - type: FinOps
+        url: finops/bing-news-finops.yml
+
+  - aid: bing-news:news-category
+    name: Bing News Category API
+    description: >-
+      Returns top news articles filtered by category (e.g., Business, Entertainment, Sports,
+      Health, ScienceAndTechnology, Politics, World). Supports multiple markets with
+      locale-specific category taxonomies. No search query is required; results reflect
+      top headlines for the chosen category in the specified market.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/how-to/category-news
+    baseURL: https://api.bing.microsoft.com/v7.0/news
+    tags:
+      - News
+      - Category
+      - Headlines
+      - Bing
+      - Microsoft
+    properties:
+      - type: Documentation
+        url: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/how-to/category-news
+      - type: APIReference
+        url: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/reference/endpoints
+
+  - aid: bing-news:trending-topics
+    name: Bing Trending News Topics API
+    description: >-
+      Returns news topics that are currently trending on social networks. Supports
+      filtering by Unix epoch timestamp (since parameter) to retrieve topics discovered
+      after a specific point in time. Results include topic names, related search queries,
+      and image thumbnails. Only available in supported markets.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/how-to/trending-news
+    baseURL: https://api.bing.microsoft.com/v7.0/news/trendingtopics
+    tags:
+      - News
+      - Trending
+      - Social
+      - Topics
+      - Bing
+      - Microsoft
+    properties:
+      - type: Documentation
+        url: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/how-to/trending-news
+      - type: APIReference
+        url: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/reference/endpoints
+
+common:
+  - type: Website
+    url: https://www.bing.com/news
+  - type: Portal
+    url: https://portal.azure.com/
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/overview
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/reference/endpoints
+  - type: Authentication
+    url: https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/create-bing-search-service-resource
+  - type: Pricing
+    url: https://www.microsoft.com/en-us/bing/apis/pricing
+  - type: TermsOfService
+    url: https://www.microsoft.com/en-us/bing/apis/legal
+  - type: PrivacyPolicy
+    url: https://privacy.microsoft.com/en-us/privacystatement
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/quickstarts/quickstarts
+  - type: SDKs
+    url: https://learn.microsoft.com/en-us/previous-versions/azure/cognitive-services/Bing-News-Search/quickstarts/client-libraries
+  - type: Support
+    url: https://learn.microsoft.com/en-us/answers/tags/142/bing-category-bing-search-apis-azure-bing-news
+  - type: GitHubOrganization
+    url: https://github.com/microsoft
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

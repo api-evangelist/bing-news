@@ -1,0 +1,171 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+provider: Bing News Search
+providerId: bing-news
+publisherName: Microsoft
+serviceCategory: API
+created: '2026-06-13'
+modified: '2026-06-13'
+tags:
+  - News
+  - Search
+  - Microsoft
+  - Bing
+  - FinOps
+  - Cost Management
+  - FOCUS
+description: >-
+  FinOps framework definition for the Bing News Search API. Provides a FOCUS-aligned
+  mapping for cost allocation, usage measurement, and unit-economics reporting.
+  The Bing News Search API was retired on August 11, 2025. Historical pricing was
+  $7 per 1,000 transactions on the S1 tier and 1,000 free transactions/month on F1.
+principles:
+  - name: Visibility
+    description: >-
+      Make news API consumption costs visible to engineering, product, and finance
+      teams in near real-time via Azure Cost Management dashboards.
+  - name: Allocation
+    description: >-
+      Tag every chargeable API call with the consuming team, environment, application,
+      and feature so cost can be attributed accurately.
+  - name: Optimization
+    description: >-
+      Evaluate request patterns, response caching strategies (e.g., honoring Pragma:
+      no-cache only when freshness is critical), and tier selection to reduce cost
+      per useful unit of work.
+  - name: Accountability
+    description: >-
+      Establish budget owners and chargeback or showback flows for each team consuming
+      news search results.
+domains:
+  - name: Understand Usage and Cost
+    capabilities:
+      - Data Ingestion
+      - Allocation
+      - Reporting and Analytics
+      - Anomaly Management
+  - name: Quantify Business Value
+    capabilities:
+      - Planning and Estimating
+      - Forecasting
+      - Budgeting
+      - Benchmarking
+      - Unit Economics
+  - name: Optimize Usage and Cost
+    capabilities:
+      - Architecting for Cloud
+      - Rate Optimization
+      - Workload Optimization
+      - Licensing and SaaS
+  - name: Manage the FinOps Practice
+    capabilities:
+      - FinOps Practice Operations
+      - FinOps Education and Enablement
+      - Invoicing and Chargeback
+      - Onboarding Workloads
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+    - Usage
+    - Purchase
+    - Tax
+    - Credit
+    - Adjustment
+  chargeFrequency: Recurring
+focusColumns:
+  ServiceName: Bing News Search
+  ServiceCategory: Developer Tools / API
+  ProviderName: Microsoft
+  PublisherName: Microsoft
+  InvoiceIssuerName: Microsoft
+  PricingCategory: Usage-Based
+  PricingUnit: request
+  BillingCurrency: USD
+  ChargeCategory: Usage
+meters:
+  - name: api_requests
+    description: Count of billable API transactions across all Bing News Search endpoints
+    unit: request
+    aggregation: sum
+    dimensions:
+      - endpoint
+      - tier
+      - market
+      - consumer
+      - category
+
+  - name: data_egress
+    description: Bytes returned in API responses (article text, thumbnails, metadata)
+    unit: GB
+    aggregation: sum
+    dimensions:
+      - endpoint
+      - market
+      - consumer
+
+apis:
+  - name: Bing News Search API
+    baseURL: https://api.bing.microsoft.com/v7.0/news/search
+    tags:
+      - News
+      - Search
+      - Bing
+    serviceName: Bing News Search API
+    serviceCategory: API
+    pricingUnit: per 1,000 transactions
+    pricePerUnit: '7.00'
+    freeTierIncluded: true
+    freeTierLimit: 1000 transactions/month
+
+  - name: Bing News Category API
+    baseURL: https://api.bing.microsoft.com/v7.0/news
+    tags:
+      - News
+      - Category
+      - Headlines
+      - Bing
+    serviceName: Bing News Category API
+    serviceCategory: API
+    pricingUnit: per 1,000 transactions
+    pricePerUnit: '7.00'
+    freeTierIncluded: true
+    freeTierLimit: 1000 transactions/month (shared)
+
+  - name: Bing Trending News Topics API
+    baseURL: https://api.bing.microsoft.com/v7.0/news/trendingtopics
+    tags:
+      - News
+      - Trending
+      - Social
+      - Bing
+    serviceName: Bing Trending News Topics API
+    serviceCategory: API
+    pricingUnit: per 1,000 transactions
+    pricePerUnit: '7.00'
+    freeTierIncluded: true
+    freeTierLimit: 1000 transactions/month (shared)
+
+unitEconomics:
+  - name: Cost per 1K News Search Requests
+    metric: billed_cost / (api_requests / 1000)
+    target: '7.00'
+  - name: Cost per Active Consumer
+    metric: billed_cost / active_consumers
+    target: TBD
+  - name: Cache Hit Rate
+    metric: cached_responses / total_requests
+    description: >-
+      Higher cache hit rates reduce billable transactions; avoid Pragma no-cache
+      except when freshness is business-critical.
+    target: TBD
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
