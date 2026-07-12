@@ -93,6 +93,10 @@ apis:
         url: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/reference/endpoints
 
 common:
+  - type: DomainSecurity
+    url: security/bing-news-domain-security.yml
+  - type: Authentication
+    url: authentication/bing-news-authentication.yml
   - type: Website
     url: https://www.bing.com/news
   - type: Portal
