@@ -93,6 +93,8 @@ apis:
         url: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/reference/endpoints
 
 common:
+  - type: AgenticAccess
+    url: agentic-access/bing-news-agentic-access.yml
   - type: DomainSecurity
     url: security/bing-news-domain-security.yml
   - type: Authentication
