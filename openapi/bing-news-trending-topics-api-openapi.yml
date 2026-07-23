@@ -1,0 +1,270 @@
+openapi: 3.0.3
+info:
+  title: Bing News Search API v7 News Category Trending Topics API
+  description: The Bing News Search REST API enables developers to retrieve relevant news articles, trending topics, and category-filtered news with image thumbnails and publisher metadata. The API provides search queries against Bing's news index, returning results with titles, descriptions, URLs, publication dates, and related media content.
+  version: '7.0'
+  contact:
+    name: Microsoft Bing Support
+    url: https://learn.microsoft.com/en-us/answers/tags/142/bing-category-bing-search-apis-azure-bing-news
+  termsOfService: https://www.microsoft.com/en-us/bing/apis/legal
+  license:
+    name: Microsoft Bing APIs Terms of Use
+    url: https://www.microsoft.com/en-us/bing/apis/legal
+  x-api-id: bing-news
+  x-retired: true
+  x-retirement-note: Bing Search APIs are retired as a standalone Azure Cognitive Service. Existing subscriptions were honored through October 2023.
+servers:
+- url: https://api.bing.microsoft.com/v7.0
+  description: Bing News Search API v7
+security:
+- ApiKeyAuth: []
+tags:
+- name: Trending Topics
+  description: Get currently trending news topics from social networks
+paths:
+  /news/trendingtopics:
+    get:
+      operationId: TrendingTopics
+      summary: Get Trending News Topics
+      description: Returns news topics that are currently trending on social networks. Supports filtering by Unix epoch timestamp (since parameter) to retrieve topics discovered after a specific point in time. Results include topic names, related search queries, and image thumbnails. Only available in supported markets.
+      tags:
+      - Trending Topics
+      parameters:
+      - $ref: '#/components/parameters/OcpApimSubscriptionKey'
+      - name: since
+        in: query
+        required: false
+        description: The UNIX epoch time (Unix timestamp) that Bing uses to select the trending topics. Bing returns trending topics that it discovered on or after the specified date and time. To use this parameter, also specify the sortBy parameter and set it to Date.
+        schema:
+          type: integer
+          format: int64
+      - name: sortBy
+        in: query
+        required: false
+        description: The order to return news topics in. If using Trending News API and specifying the since query parameter, you must set this parameter to Date.
+        schema:
+          type: string
+          enum:
+          - Date
+          - Relevance
+      - $ref: '#/components/parameters/mkt'
+      - $ref: '#/components/parameters/cc'
+      - $ref: '#/components/parameters/setLang'
+      - $ref: '#/components/parameters/safeSearch'
+      responses:
+        '200':
+          description: Successful trending topics response
+          headers:
+            BingAPIs-Market:
+              $ref: '#/components/headers/BingAPIs-Market'
+            BingAPIs-TraceId:
+              $ref: '#/components/headers/BingAPIs-TraceId'
+            X-MSEdge-ClientID:
+              $ref: '#/components/headers/X-MSEdge-ClientID'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrendingTopics'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: Number of seconds to wait before sending another request
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  headers:
+    BingAPIs-Market:
+      description: The market used by the request. The form is <languageCode>-<countryCode>. For example, en-US.
+      schema:
+        type: string
+    X-MSEdge-ClientID:
+      description: Bing uses this header to provide users with consistent behavior across Bing API calls. Persist and reuse across sessions for a given user on a given device.
+      schema:
+        type: string
+    BingAPIs-TraceId:
+      description: The ID of the log entry that contains the details of the request. Capture this ID when an error occurs.
+      schema:
+        type: string
+  parameters:
+    OcpApimSubscriptionKey:
+      name: Ocp-Apim-Subscription-Key
+      in: header
+      required: true
+      description: The subscription key that you received when you signed up for this service in Azure Portal.
+      schema:
+        type: string
+    mkt:
+      name: mkt
+      in: query
+      required: false
+      description: The market where the results come from. Typically the country where the user is making the request from. The market must be in the form <language>-<country/region>. For example, en-US. This parameter and the cc query parameter are mutually exclusive.
+      schema:
+        type: string
+        example: en-US
+    cc:
+      name: cc
+      in: query
+      required: false
+      description: A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive.
+      schema:
+        type: string
+        minLength: 2
+        maxLength: 2
+        example: US
+    safeSearch:
+      name: safeSearch
+      in: query
+      required: false
+      description: Used to filter news articles for adult content. The default is Moderate.
+      schema:
+        type: string
+        enum:
+        - 'Off'
+        - Moderate
+        - Strict
+        default: Moderate
+    setLang:
+      name: setLang
+      in: query
+      required: false
+      description: The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. This parameter and the Accept-Language header are mutually exclusive.
+      schema:
+        type: string
+        example: en
+  schemas:
+    Topic:
+      type: object
+      description: Defines a trending news topic.
+      properties:
+        image:
+          $ref: '#/components/schemas/Image'
+          description: A link to a related image. The Image object contains only the url and provider fields.
+        isBreakingNews:
+          type: boolean
+          description: A Boolean value that indicates whether the topic is considered breaking news.
+        name:
+          type: string
+          description: The title of the trending topic.
+        newsSearchUrl:
+          type: string
+          description: A URL to the Bing News search results for the search query term.
+        query:
+          $ref: '#/components/schemas/Query'
+          description: A search query term that returns this trending topic.
+        webSearchUrl:
+          type: string
+          description: A URL to the Bing search results for the search query term.
+    Image:
+      type: object
+      description: Defines a thumbnail image.
+      properties:
+        provider:
+          type: array
+          description: A list of owners of the image.
+          items:
+            $ref: '#/components/schemas/Organization'
+        thumbnail:
+          $ref: '#/components/schemas/Thumbnail'
+          description: A link to a thumbnail of the image.
+        url:
+          type: string
+          description: A URL to the image.
+    Thumbnail:
+      type: object
+      description: Defines a link to the related image.
+      properties:
+        contentUrl:
+          type: string
+          description: The URL to the image.
+        height:
+          type: integer
+          description: The height of the image in pixels.
+        width:
+          type: integer
+          description: The width of the image in pixels.
+    ErrorResponse:
+      type: object
+      description: The top-level object that the response includes when the request fails.
+      properties:
+        _type:
+          type: string
+          description: Type hint, which is set to ErrorResponse.
+        errors:
+          type: array
+          description: A list of errors that describe the reasons why the request failed.
+          items:
+            $ref: '#/components/schemas/Error'
+    TrendingTopics:
+      type: object
+      description: The top-level object that the response includes when the trending topics request succeeds.
+      properties:
+        value:
+          type: array
+          description: A list of trending news topics on Bing. If there are no results to return, the array is empty.
+          items:
+            $ref: '#/components/schemas/Topic'
+    Organization:
+      type: object
+      description: Defines the provider that ran the article.
+      properties:
+        _type:
+          type: string
+          description: Type hint.
+        name:
+          type: string
+          description: The name of the provider that ran the article.
+    Error:
+      type: object
+      description: Defines the error that occurred.
+      properties:
+        code:
+          type: string
+          description: The error code that identifies the category of error.
+        message:
+          type: string
+          description: A description of the error.
+        moreDetails:
+          type: string
+          description: A description that provides additional information about the error.
+        parameter:
+          type: string
+          description: The query parameter in the request that caused the error.
+        subCode:
+          type: string
+          description: The error code that identifies the error.
+        value:
+          type: string
+          description: The query parameter's value that was not valid.
+    Query:
+      type: object
+      description: Defines the search query string.
+      properties:
+        text:
+          type: string
+          description: A query string that returns the trending topic.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Ocp-Apim-Subscription-Key
+      description: The subscription key received when signing up for the Bing News Search service in the Azure Portal.
+externalDocs:
+  description: Bing News Search API Documentation
+  url: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/overview
