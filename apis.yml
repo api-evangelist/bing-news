@@ -6,7 +6,20 @@ description: >-
   trending topics, and category-filtered news with image thumbnails and publisher metadata.
   The API provides search queries against Bing's news index, returning results with titles,
   descriptions, URLs, publication dates, and related media content.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bing-news.png
 tags:
   - News
   - Search
@@ -19,80 +32,125 @@ created: '2026-06-13'
 modified: '2026-06-13'
 specificationVersion: '0.19'
 apis:
-  - aid: bing-news:news-search
-    name: Bing News Search API
-    description: >-
-      Returns news articles relevant to a user's search query. Supports filtering by
-      freshness, market, safe search level, and category. Results include article titles,
-      descriptions, URLs, publication times, image thumbnails, and publisher metadata.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/overview
-    baseURL: https://api.bing.microsoft.com/v7.0/news/search
-    tags:
-      - News
-      - Search
-      - Bing
-      - Microsoft
-    properties:
-      - type: Documentation
-        url: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/overview
-      - type: APIReference
-        url: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/reference/endpoints
-      - type: Plans
-        url: plans/bing-news-plans-pricing.yml
-      - type: RateLimits
-        url: rate-limits/bing-news-rate-limits.yml
-      - type: FinOps
-        url: finops/bing-news-finops.yml
-      - type: OpenAPI
-        url: openapi/bing-news-search-openapi.json
-
-  - aid: bing-news:news-category
-    name: Bing News Category API
-    description: >-
-      Returns top news articles filtered by category (e.g., Business, Entertainment, Sports,
-      Health, ScienceAndTechnology, Politics, World). Supports multiple markets with
-      locale-specific category taxonomies. No search query is required; results reflect
-      top headlines for the chosen category in the specified market.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/how-to/category-news
-    baseURL: https://api.bing.microsoft.com/v7.0/news
-    tags:
-      - News
-      - Category
-      - Headlines
-      - Bing
-      - Microsoft
-    properties:
-      - type: Documentation
-        url: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/how-to/category-news
-      - type: APIReference
-        url: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/reference/endpoints
-
-  - aid: bing-news:trending-topics
-    name: Bing Trending News Topics API
-    description: >-
-      Returns news topics that are currently trending on social networks. Supports
-      filtering by Unix epoch timestamp (since parameter) to retrieve topics discovered
-      after a specific point in time. Results include topic names, related search queries,
-      and image thumbnails. Only available in supported markets.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/how-to/trending-news
-    baseURL: https://api.bing.microsoft.com/v7.0/news/trendingtopics
-    tags:
-      - News
-      - Trending
-      - Social
-      - Topics
-      - Bing
-      - Microsoft
-    properties:
-      - type: Documentation
-        url: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/how-to/trending-news
-      - type: APIReference
-        url: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/reference/endpoints
-
+- aid: bing-news:news-category
+  name: Bing News Category API
+  description: >-
+    Returns top news articles filtered by category (e.g., Business, Entertainment, Sports, Health, ScienceAndTechnology,
+    Politics, World). Supports multiple markets with locale-specific category taxonomies. No search query
+    is required; results reflect top headlines for the chosen category in the specified market.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: >-
+    https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/how-to/category-news
+  baseURL: https://api.bing.microsoft.com/v7.0/news
+  tags:
+  - News
+  - Category
+  - Headlines
+  - Bing
+  - Microsoft
+  properties:
+  - type: Documentation
+    url: >-
+      https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/how-to/category-news
+  - type: APIReference
+    url: >-
+      https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/reference/endpoints
+- aid: bing-news:trending-topics
+  name: Bing Trending News Topics API
+  description: >-
+    Returns news topics that are currently trending on social networks. Supports filtering by Unix epoch
+    timestamp (since parameter) to retrieve topics discovered after a specific point in time. Results
+    include topic names, related search queries, and image thumbnails. Only available in supported markets.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: >-
+    https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/how-to/trending-news
+  baseURL: https://api.bing.microsoft.com/v7.0/news/trendingtopics
+  tags:
+  - News
+  - Trending
+  - Social
+  - Topics
+  - Bing
+  - Microsoft
+  properties:
+  - type: Documentation
+    url: >-
+      https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/how-to/trending-news
+  - type: APIReference
+    url: >-
+      https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/reference/endpoints
+- aid: bing-news:bing-news-news-category-api
+  name: Bing News Search News Category API
+  description: Get top news articles by category
+  humanURL: >-
+    https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/overview
+  baseURL: https://api.bing.microsoft.com/v7.0/news/search
+  tags:
+  - News Category
+  properties:
+  - type: OpenAPI
+    url: openapi/bing-news-news-category-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/overview
+  - type: APIReference
+    url: >-
+      https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/reference/endpoints
+  - type: Plans
+    url: plans/bing-news-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/bing-news-rate-limits.yml
+  - type: FinOps
+    url: finops/bing-news-finops.yml
+- aid: bing-news:bing-news-news-search-api
+  name: Bing News Search News Search API
+  description: Search for news articles by keyword query
+  humanURL: >-
+    https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/overview
+  baseURL: https://api.bing.microsoft.com/v7.0/news/search
+  tags:
+  - News Search
+  properties:
+  - type: OpenAPI
+    url: openapi/bing-news-news-search-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/overview
+  - type: APIReference
+    url: >-
+      https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/reference/endpoints
+  - type: Plans
+    url: plans/bing-news-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/bing-news-rate-limits.yml
+  - type: FinOps
+    url: finops/bing-news-finops.yml
+- aid: bing-news:bing-news-trending-topics-api
+  name: Bing News Search Trending Topics API
+  description: Get currently trending news topics from social networks
+  humanURL: >-
+    https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/overview
+  baseURL: https://api.bing.microsoft.com/v7.0/news/search
+  tags:
+  - Trending Topics
+  properties:
+  - type: OpenAPI
+    url: openapi/bing-news-trending-topics-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/overview
+  - type: APIReference
+    url: >-
+      https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/reference/endpoints
+  - type: Plans
+    url: plans/bing-news-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/bing-news-rate-limits.yml
+  - type: FinOps
+    url: finops/bing-news-finops.yml
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/bing-news-search/overview
   - type: AgenticAccess
     url: agentic-access/bing-news-agentic-access.yml
   - type: DomainSecurity
