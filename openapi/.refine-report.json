@@ -1,0 +1,18 @@
+{
+  "provider": "bing-news",
+  "sources": [
+    "bing-news-news-category-api-openapi.yml",
+    "bing-news-news-search-api-openapi.yml",
+    "bing-news-trending-topics-api-openapi.yml"
+  ],
+  "outputs": [
+    "bing-news-news-category-api-openapi.yml",
+    "bing-news-news-search-api-openapi.yml",
+    "bing-news-trending-topics-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

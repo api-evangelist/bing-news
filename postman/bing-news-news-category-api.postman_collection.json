@@ -1,0 +1,494 @@
+{
+  "info": {
+    "_postman_id": "e5281874-602c-4499-8a29-5487feba83db",
+    "name": "Bing News Search API v7 News Category API",
+    "description": "The Bing News Search REST API enables developers to retrieve relevant news articles, trending topics, and category-filtered news with image thumbnails and publisher metadata. The API provides search queries against Bing's news index, returning results with titles, descriptions, URLs, publication dates, and related media content.\n\nContact Support:\n Name: Microsoft Bing Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:13:34.000Z",
+    "updatedAt": "2026-07-28T01:13:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e5281874-602c-4499-8a29-5487feba83db"
+  },
+  "item": [
+    {
+      "name": "news",
+      "item": [
+        {
+          "name": "Get Top News by Category",
+          "id": "758108f2-f1ff-4322-a5ac-bc82859fbd59",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                "key": "Ocp-Apim-Subscription-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/news?category=<string>&mkt=<string>&cc=<string>&setLang=<string>&safeSearch=Moderate&textDecorations=false&textFormat=Raw",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "news"
+              ],
+              "query": [
+                {
+                  "description": "The category of news articles to return. Use this parameter only with the /news endpoint. If not specified, the response includes up to 10 headline news articles typically published in the last 24 hours from any category.",
+                  "key": "category",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The market where the results come from. Typically the country where the user is making the request from. The market must be in the form <language>-<country/region>. For example, en-US. This parameter and the cc query parameter are mutually exclusive.",
+                  "key": "mkt",
+                  "value": "<string>"
+                },
+                {
+                  "description": "A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive.",
+                  "key": "cc",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. This parameter and the Accept-Language header are mutually exclusive.",
+                  "key": "setLang",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Used to filter news articles for adult content. The default is Moderate.",
+                  "key": "safeSearch",
+                  "value": "Moderate"
+                },
+                {
+                  "description": "A Boolean value that determines whether display strings in the results should contain decoration markers such as hit highlighting characters. The default is false.",
+                  "key": "textDecorations",
+                  "value": "false"
+                },
+                {
+                  "description": "The type of markers to use for text decorations (see the textDecorations query parameter). Raw uses Unicode characters; HTML uses HTML tags.",
+                  "key": "textFormat",
+                  "value": "Raw"
+                }
+              ]
+            },
+            "description": "Returns top news articles filtered by category (e.g., Business, Entertainment, Sports, Health, ScienceAndTechnology, Politics, World). Supports multiple markets with locale-specific category taxonomies. No search query is required; results reflect top headlines for the chosen category in the specified market."
+          },
+          "response": [
+            {
+              "id": "a80e95dc-5659-4a67-a915-611e5a0630d2",
+              "name": "Successful category news response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/news?category=<string>&mkt=<string>&cc=<string>&setLang=<string>&safeSearch=Moderate&textDecorations=false&textFormat=Raw",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "news"
+                  ],
+                  "query": [
+                    {
+                      "description": "The category of news articles to return. Use this parameter only with the /news endpoint. If not specified, the response includes up to 10 headline news articles typically published in the last 24 hours from any category.",
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The market where the results come from. Typically the country where the user is making the request from. The market must be in the form <language>-<country/region>. For example, en-US. This parameter and the cc query parameter are mutually exclusive.",
+                      "key": "mkt",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive.",
+                      "key": "cc",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. This parameter and the Accept-Language header are mutually exclusive.",
+                      "key": "setLang",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Used to filter news articles for adult content. The default is Moderate.",
+                      "key": "safeSearch",
+                      "value": "Moderate"
+                    },
+                    {
+                      "description": "A Boolean value that determines whether display strings in the results should contain decoration markers such as hit highlighting characters. The default is false.",
+                      "key": "textDecorations",
+                      "value": "false"
+                    },
+                    {
+                      "description": "The type of markers to use for text decorations (see the textDecorations query parameter). Raw uses Unicode characters; HTML uses HTML tags.",
+                      "key": "textFormat",
+                      "value": "Raw"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "BingAPIs-Market",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "BingAPIs-TraceId",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "X-MSEdge-ClientID",
+                  "value": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"_type\": \"<string>\",\n  \"id\": \"<string>\",\n  \"readLink\": \"<string>\",\n  \"relatedTopics\": [\n    {\n      \"relatedNews\": {\n        \"category\": \"<string>\",\n        \"clusteredArticles\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/NewsArticle detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/NewsArticle detected>\"\n          }\n        ],\n        \"datePublished\": \"<string>\",\n        \"description\": \"<string>\",\n        \"headline\": \"<boolean>\",\n        \"id\": \"<string>\",\n        \"image\": {\n          \"provider\": [\n            {\n              \"_type\": \"<string>\",\n              \"name\": \"<string>\"\n            },\n            {\n              \"_type\": \"<string>\",\n              \"name\": \"<string>\"\n            }\n          ],\n          \"thumbnail\": {\n            \"contentUrl\": \"<string>\",\n            \"height\": \"<integer>\",\n            \"width\": \"<integer>\"\n          },\n          \"url\": \"<string>\"\n        },\n        \"mentions\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"name\": \"<string>\",\n        \"provider\": [\n          {\n            \"_type\": \"<string>\",\n            \"name\": \"<string>\"\n          },\n          {\n            \"_type\": \"<string>\",\n            \"name\": \"<string>\"\n          }\n        ],\n        \"url\": \"<string>\",\n        \"video\": {\n          \"allowHttpsEmbed\": \"<boolean>\",\n          \"embedHtml\": \"<string>\",\n          \"motionThumbnailUrl\": \"<string>\",\n          \"name\": \"<string>\",\n          \"thumbnail\": {\n            \"height\": \"<integer>\",\n            \"width\": \"<integer>\"\n          },\n          \"thumbnailUrl\": \"<string>\"\n        }\n      },\n      \"name\": \"<string>\",\n      \"webSearchUrl\": \"<string>\"\n    },\n    {\n      \"relatedNews\": {\n        \"category\": \"<string>\",\n        \"clusteredArticles\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/NewsArticle detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/NewsArticle detected>\"\n          }\n        ],\n        \"datePublished\": \"<string>\",\n        \"description\": \"<string>\",\n        \"headline\": \"<boolean>\",\n        \"id\": \"<string>\",\n        \"image\": {\n          \"provider\": [\n            {\n              \"_type\": \"<string>\",\n              \"name\": \"<string>\"\n            },\n            {\n              \"_type\": \"<string>\",\n              \"name\": \"<string>\"\n            }\n          ],\n          \"thumbnail\": {\n            \"contentUrl\": \"<string>\",\n            \"height\": \"<integer>\",\n            \"width\": \"<integer>\"\n          },\n          \"url\": \"<string>\"\n        },\n        \"mentions\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ],\n        \"name\": \"<string>\",\n        \"provider\": [\n          {\n            \"_type\": \"<string>\",\n            \"name\": \"<string>\"\n          },\n          {\n            \"_type\": \"<string>\",\n            \"name\": \"<string>\"\n          }\n        ],\n        \"url\": \"<string>\",\n        \"video\": {\n          \"allowHttpsEmbed\": \"<boolean>\",\n          \"embedHtml\": \"<string>\",\n          \"motionThumbnailUrl\": \"<string>\",\n          \"name\": \"<string>\",\n          \"thumbnail\": {\n            \"height\": \"<integer>\",\n            \"width\": \"<integer>\"\n          },\n          \"thumbnailUrl\": \"<string>\"\n        }\n      },\n      \"name\": \"<string>\",\n      \"webSearchUrl\": \"<string>\"\n    }\n  ],\n  \"sort\": [\n    {\n      \"id\": \"date\",\n      \"isSelected\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"id\": \"date\",\n      \"isSelected\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"totalEstimatedMatches\": \"<long>\",\n  \"value\": [\n    {\n      \"category\": \"<string>\",\n      \"clusteredArticles\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/NewsArticle detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/NewsArticle detected>\"\n        }\n      ],\n      \"datePublished\": \"<string>\",\n      \"description\": \"<string>\",\n      \"headline\": \"<boolean>\",\n      \"id\": \"<string>\",\n      \"image\": {\n        \"provider\": [\n          {\n            \"_type\": \"<string>\",\n            \"name\": \"<string>\"\n          },\n          {\n            \"_type\": \"<string>\",\n            \"name\": \"<string>\"\n          }\n        ],\n        \"thumbnail\": {\n          \"contentUrl\": \"<string>\",\n          \"height\": \"<integer>\",\n          \"width\": \"<integer>\"\n        },\n        \"url\": \"<string>\"\n      },\n      \"mentions\": [\n        {\n          \"name\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\"\n        }\n      ],\n      \"name\": \"<string>\",\n      \"provider\": [\n        {\n          \"_type\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"_type\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ],\n      \"url\": \"<string>\",\n      \"video\": {\n        \"allowHttpsEmbed\": \"<boolean>\",\n        \"embedHtml\": \"<string>\",\n        \"motionThumbnailUrl\": \"<string>\",\n        \"name\": \"<string>\",\n        \"thumbnail\": {\n          \"height\": \"<integer>\",\n          \"width\": \"<integer>\"\n        },\n        \"thumbnailUrl\": \"<string>\"\n      }\n    },\n    {\n      \"category\": \"<string>\",\n      \"clusteredArticles\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/NewsArticle detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/NewsArticle detected>\"\n        }\n      ],\n      \"datePublished\": \"<string>\",\n      \"description\": \"<string>\",\n      \"headline\": \"<boolean>\",\n      \"id\": \"<string>\",\n      \"image\": {\n        \"provider\": [\n          {\n            \"_type\": \"<string>\",\n            \"name\": \"<string>\"\n          },\n          {\n            \"_type\": \"<string>\",\n            \"name\": \"<string>\"\n          }\n        ],\n        \"thumbnail\": {\n          \"contentUrl\": \"<string>\",\n          \"height\": \"<integer>\",\n          \"width\": \"<integer>\"\n        },\n        \"url\": \"<string>\"\n      },\n      \"mentions\": [\n        {\n          \"name\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\"\n        }\n      ],\n      \"name\": \"<string>\",\n      \"provider\": [\n        {\n          \"_type\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"_type\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ],\n      \"url\": \"<string>\",\n      \"video\": {\n        \"allowHttpsEmbed\": \"<boolean>\",\n        \"embedHtml\": \"<string>\",\n        \"motionThumbnailUrl\": \"<string>\",\n        \"name\": \"<string>\",\n        \"thumbnail\": {\n          \"height\": \"<integer>\",\n          \"width\": \"<integer>\"\n        },\n        \"thumbnailUrl\": \"<string>\"\n      }\n    }\n  ],\n  \"webSearchUrl\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:13:34.000Z",
+              "updatedAt": "2026-07-28T01:13:34.000Z",
+              "uid": "35240-a80e95dc-5659-4a67-a915-611e5a0630d2"
+            },
+            {
+              "id": "ebd85549-1664-4c13-a72d-b44e2b729903",
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/news?category=<string>&mkt=<string>&cc=<string>&setLang=<string>&safeSearch=Moderate&textDecorations=false&textFormat=Raw",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "news"
+                  ],
+                  "query": [
+                    {
+                      "description": "The category of news articles to return. Use this parameter only with the /news endpoint. If not specified, the response includes up to 10 headline news articles typically published in the last 24 hours from any category.",
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The market where the results come from. Typically the country where the user is making the request from. The market must be in the form <language>-<country/region>. For example, en-US. This parameter and the cc query parameter are mutually exclusive.",
+                      "key": "mkt",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive.",
+                      "key": "cc",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. This parameter and the Accept-Language header are mutually exclusive.",
+                      "key": "setLang",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Used to filter news articles for adult content. The default is Moderate.",
+                      "key": "safeSearch",
+                      "value": "Moderate"
+                    },
+                    {
+                      "description": "A Boolean value that determines whether display strings in the results should contain decoration markers such as hit highlighting characters. The default is false.",
+                      "key": "textDecorations",
+                      "value": "false"
+                    },
+                    {
+                      "description": "The type of markers to use for text decorations (see the textDecorations query parameter). Raw uses Unicode characters; HTML uses HTML tags.",
+                      "key": "textFormat",
+                      "value": "Raw"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"_type\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\",\n      \"moreDetails\": \"<string>\",\n      \"parameter\": \"<string>\",\n      \"subCode\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\",\n      \"moreDetails\": \"<string>\",\n      \"parameter\": \"<string>\",\n      \"subCode\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:13:34.000Z",
+              "updatedAt": "2026-07-28T01:13:34.000Z",
+              "uid": "35240-ebd85549-1664-4c13-a72d-b44e2b729903"
+            },
+            {
+              "id": "be85b52a-ad3b-40dd-a79e-a40f944d2c3d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/news?category=<string>&mkt=<string>&cc=<string>&setLang=<string>&safeSearch=Moderate&textDecorations=false&textFormat=Raw",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "news"
+                  ],
+                  "query": [
+                    {
+                      "description": "The category of news articles to return. Use this parameter only with the /news endpoint. If not specified, the response includes up to 10 headline news articles typically published in the last 24 hours from any category.",
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The market where the results come from. Typically the country where the user is making the request from. The market must be in the form <language>-<country/region>. For example, en-US. This parameter and the cc query parameter are mutually exclusive.",
+                      "key": "mkt",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive.",
+                      "key": "cc",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. This parameter and the Accept-Language header are mutually exclusive.",
+                      "key": "setLang",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Used to filter news articles for adult content. The default is Moderate.",
+                      "key": "safeSearch",
+                      "value": "Moderate"
+                    },
+                    {
+                      "description": "A Boolean value that determines whether display strings in the results should contain decoration markers such as hit highlighting characters. The default is false.",
+                      "key": "textDecorations",
+                      "value": "false"
+                    },
+                    {
+                      "description": "The type of markers to use for text decorations (see the textDecorations query parameter). Raw uses Unicode characters; HTML uses HTML tags.",
+                      "key": "textFormat",
+                      "value": "Raw"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"_type\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\",\n      \"moreDetails\": \"<string>\",\n      \"parameter\": \"<string>\",\n      \"subCode\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\",\n      \"moreDetails\": \"<string>\",\n      \"parameter\": \"<string>\",\n      \"subCode\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:13:34.000Z",
+              "updatedAt": "2026-07-28T01:13:34.000Z",
+              "uid": "35240-be85b52a-ad3b-40dd-a79e-a40f944d2c3d"
+            },
+            {
+              "id": "a9626826-759a-4528-bf6b-dee1299969f0",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/news?category=<string>&mkt=<string>&cc=<string>&setLang=<string>&safeSearch=Moderate&textDecorations=false&textFormat=Raw",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "news"
+                  ],
+                  "query": [
+                    {
+                      "description": "The category of news articles to return. Use this parameter only with the /news endpoint. If not specified, the response includes up to 10 headline news articles typically published in the last 24 hours from any category.",
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The market where the results come from. Typically the country where the user is making the request from. The market must be in the form <language>-<country/region>. For example, en-US. This parameter and the cc query parameter are mutually exclusive.",
+                      "key": "mkt",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive.",
+                      "key": "cc",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. This parameter and the Accept-Language header are mutually exclusive.",
+                      "key": "setLang",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Used to filter news articles for adult content. The default is Moderate.",
+                      "key": "safeSearch",
+                      "value": "Moderate"
+                    },
+                    {
+                      "description": "A Boolean value that determines whether display strings in the results should contain decoration markers such as hit highlighting characters. The default is false.",
+                      "key": "textDecorations",
+                      "value": "false"
+                    },
+                    {
+                      "description": "The type of markers to use for text decorations (see the textDecorations query parameter). Raw uses Unicode characters; HTML uses HTML tags.",
+                      "key": "textFormat",
+                      "value": "Raw"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Number of seconds to wait before sending another request",
+                    "type": "text/plain"
+                  },
+                  "key": "Retry-After",
+                  "value": "<integer>"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"_type\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\",\n      \"moreDetails\": \"<string>\",\n      \"parameter\": \"<string>\",\n      \"subCode\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\",\n      \"moreDetails\": \"<string>\",\n      \"parameter\": \"<string>\",\n      \"subCode\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:13:34.000Z",
+              "updatedAt": "2026-07-28T01:13:34.000Z",
+              "uid": "35240-a9626826-759a-4528-bf6b-dee1299969f0"
+            }
+          ],
+          "createdAt": "2026-07-28T01:13:34.000Z",
+          "updatedAt": "2026-07-28T01:13:34.000Z",
+          "uid": "35240-758108f2-f1ff-4322-a5ac-bc82859fbd59"
+        }
+      ],
+      "id": "5cf71a46-6d85-4b4a-ac1d-b3c09dd92207",
+      "createdAt": "2026-07-28T01:13:34.000Z",
+      "updatedAt": "2026-07-28T01:13:34.000Z",
+      "uid": "35240-5cf71a46-6d85-4b4a-ac1d-b3c09dd92207"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Ocp-Apim-Subscription-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bing.microsoft.com/v7.0"
+    }
+  ]
+}

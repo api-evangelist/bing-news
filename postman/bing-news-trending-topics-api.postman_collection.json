@@ -1,0 +1,483 @@
+{
+  "info": {
+    "_postman_id": "8a33cedc-a51f-484b-ad47-857d6f6d52f2",
+    "name": "Bing News Search API v7 News Category Trending Topics API",
+    "description": "The Bing News Search REST API enables developers to retrieve relevant news articles, trending topics, and category-filtered news with image thumbnails and publisher metadata. The API provides search queries against Bing's news index, returning results with titles, descriptions, URLs, publication dates, and related media content.\n\nContact Support:\n Name: Microsoft Bing Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:13:36.000Z",
+    "updatedAt": "2026-07-28T01:13:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8a33cedc-a51f-484b-ad47-857d6f6d52f2"
+  },
+  "item": [
+    {
+      "name": "news",
+      "item": [
+        {
+          "name": "trendingtopics",
+          "item": [
+            {
+              "name": "Get Trending News Topics",
+              "id": "bd1486ae-d867-4ebd-b02e-320e40fa6ed5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/news/trendingtopics?since=<long>&sortBy=Relevance&mkt=<string>&cc=<string>&setLang=<string>&safeSearch=Moderate",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "news",
+                    "trendingtopics"
+                  ],
+                  "query": [
+                    {
+                      "description": "The UNIX epoch time (Unix timestamp) that Bing uses to select the trending topics. Bing returns trending topics that it discovered on or after the specified date and time. To use this parameter, also specify the sortBy parameter and set it to Date.",
+                      "key": "since",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "The order to return news topics in. If using Trending News API and specifying the since query parameter, you must set this parameter to Date.",
+                      "key": "sortBy",
+                      "value": "Relevance"
+                    },
+                    {
+                      "description": "The market where the results come from. Typically the country where the user is making the request from. The market must be in the form <language>-<country/region>. For example, en-US. This parameter and the cc query parameter are mutually exclusive.",
+                      "key": "mkt",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive.",
+                      "key": "cc",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. This parameter and the Accept-Language header are mutually exclusive.",
+                      "key": "setLang",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Used to filter news articles for adult content. The default is Moderate.",
+                      "key": "safeSearch",
+                      "value": "Moderate"
+                    }
+                  ]
+                },
+                "description": "Returns news topics that are currently trending on social networks. Supports filtering by Unix epoch timestamp (since parameter) to retrieve topics discovered after a specific point in time. Results include topic names, related search queries, and image thumbnails. Only available in supported markets."
+              },
+              "response": [
+                {
+                  "id": "e238e0e0-086b-4a6d-894d-e255ca32d86b",
+                  "name": "Successful trending topics response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                        "key": "Ocp-Apim-Subscription-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Ocp-Apim-Subscription-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/news/trendingtopics?since=<long>&sortBy=Relevance&mkt=<string>&cc=<string>&setLang=<string>&safeSearch=Moderate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "news",
+                        "trendingtopics"
+                      ],
+                      "query": [
+                        {
+                          "description": "The UNIX epoch time (Unix timestamp) that Bing uses to select the trending topics. Bing returns trending topics that it discovered on or after the specified date and time. To use this parameter, also specify the sortBy parameter and set it to Date.",
+                          "key": "since",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "The order to return news topics in. If using Trending News API and specifying the since query parameter, you must set this parameter to Date.",
+                          "key": "sortBy",
+                          "value": "Relevance"
+                        },
+                        {
+                          "description": "The market where the results come from. Typically the country where the user is making the request from. The market must be in the form <language>-<country/region>. For example, en-US. This parameter and the cc query parameter are mutually exclusive.",
+                          "key": "mkt",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive.",
+                          "key": "cc",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. This parameter and the Accept-Language header are mutually exclusive.",
+                          "key": "setLang",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Used to filter news articles for adult content. The default is Moderate.",
+                          "key": "safeSearch",
+                          "value": "Moderate"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "BingAPIs-Market",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "BingAPIs-TraceId",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-MSEdge-ClientID",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"value\": [\n    {\n      \"image\": {\n        \"provider\": [\n          {\n            \"_type\": \"<string>\",\n            \"name\": \"<string>\"\n          },\n          {\n            \"_type\": \"<string>\",\n            \"name\": \"<string>\"\n          }\n        ],\n        \"thumbnail\": {\n          \"contentUrl\": \"<string>\",\n          \"height\": \"<integer>\",\n          \"width\": \"<integer>\"\n        },\n        \"url\": \"<string>\"\n      },\n      \"isBreakingNews\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"newsSearchUrl\": \"<string>\",\n      \"query\": {\n        \"text\": \"<string>\"\n      },\n      \"webSearchUrl\": \"<string>\"\n    },\n    {\n      \"image\": {\n        \"provider\": [\n          {\n            \"_type\": \"<string>\",\n            \"name\": \"<string>\"\n          },\n          {\n            \"_type\": \"<string>\",\n            \"name\": \"<string>\"\n          }\n        ],\n        \"thumbnail\": {\n          \"contentUrl\": \"<string>\",\n          \"height\": \"<integer>\",\n          \"width\": \"<integer>\"\n        },\n        \"url\": \"<string>\"\n      },\n      \"isBreakingNews\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"newsSearchUrl\": \"<string>\",\n      \"query\": {\n        \"text\": \"<string>\"\n      },\n      \"webSearchUrl\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:13:36.000Z",
+                  "updatedAt": "2026-07-28T01:13:36.000Z",
+                  "uid": "35240-e238e0e0-086b-4a6d-894d-e255ca32d86b"
+                },
+                {
+                  "id": "4f4abfe5-d886-4297-80a8-464f4e35bd7e",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                        "key": "Ocp-Apim-Subscription-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Ocp-Apim-Subscription-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/news/trendingtopics?since=<long>&sortBy=Relevance&mkt=<string>&cc=<string>&setLang=<string>&safeSearch=Moderate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "news",
+                        "trendingtopics"
+                      ],
+                      "query": [
+                        {
+                          "description": "The UNIX epoch time (Unix timestamp) that Bing uses to select the trending topics. Bing returns trending topics that it discovered on or after the specified date and time. To use this parameter, also specify the sortBy parameter and set it to Date.",
+                          "key": "since",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "The order to return news topics in. If using Trending News API and specifying the since query parameter, you must set this parameter to Date.",
+                          "key": "sortBy",
+                          "value": "Relevance"
+                        },
+                        {
+                          "description": "The market where the results come from. Typically the country where the user is making the request from. The market must be in the form <language>-<country/region>. For example, en-US. This parameter and the cc query parameter are mutually exclusive.",
+                          "key": "mkt",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive.",
+                          "key": "cc",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. This parameter and the Accept-Language header are mutually exclusive.",
+                          "key": "setLang",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Used to filter news articles for adult content. The default is Moderate.",
+                          "key": "safeSearch",
+                          "value": "Moderate"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_type\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\",\n      \"moreDetails\": \"<string>\",\n      \"parameter\": \"<string>\",\n      \"subCode\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\",\n      \"moreDetails\": \"<string>\",\n      \"parameter\": \"<string>\",\n      \"subCode\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:13:36.000Z",
+                  "updatedAt": "2026-07-28T01:13:36.000Z",
+                  "uid": "35240-4f4abfe5-d886-4297-80a8-464f4e35bd7e"
+                },
+                {
+                  "id": "ff66d85d-218b-479d-87bc-b5e046409676",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                        "key": "Ocp-Apim-Subscription-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Ocp-Apim-Subscription-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/news/trendingtopics?since=<long>&sortBy=Relevance&mkt=<string>&cc=<string>&setLang=<string>&safeSearch=Moderate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "news",
+                        "trendingtopics"
+                      ],
+                      "query": [
+                        {
+                          "description": "The UNIX epoch time (Unix timestamp) that Bing uses to select the trending topics. Bing returns trending topics that it discovered on or after the specified date and time. To use this parameter, also specify the sortBy parameter and set it to Date.",
+                          "key": "since",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "The order to return news topics in. If using Trending News API and specifying the since query parameter, you must set this parameter to Date.",
+                          "key": "sortBy",
+                          "value": "Relevance"
+                        },
+                        {
+                          "description": "The market where the results come from. Typically the country where the user is making the request from. The market must be in the form <language>-<country/region>. For example, en-US. This parameter and the cc query parameter are mutually exclusive.",
+                          "key": "mkt",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive.",
+                          "key": "cc",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. This parameter and the Accept-Language header are mutually exclusive.",
+                          "key": "setLang",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Used to filter news articles for adult content. The default is Moderate.",
+                          "key": "safeSearch",
+                          "value": "Moderate"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_type\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\",\n      \"moreDetails\": \"<string>\",\n      \"parameter\": \"<string>\",\n      \"subCode\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\",\n      \"moreDetails\": \"<string>\",\n      \"parameter\": \"<string>\",\n      \"subCode\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:13:36.000Z",
+                  "updatedAt": "2026-07-28T01:13:36.000Z",
+                  "uid": "35240-ff66d85d-218b-479d-87bc-b5e046409676"
+                },
+                {
+                  "id": "73e39c98-7b6b-4626-bda4-df4d50e7fc75",
+                  "name": "Too Many Requests",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                        "key": "Ocp-Apim-Subscription-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Ocp-Apim-Subscription-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/news/trendingtopics?since=<long>&sortBy=Relevance&mkt=<string>&cc=<string>&setLang=<string>&safeSearch=Moderate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "news",
+                        "trendingtopics"
+                      ],
+                      "query": [
+                        {
+                          "description": "The UNIX epoch time (Unix timestamp) that Bing uses to select the trending topics. Bing returns trending topics that it discovered on or after the specified date and time. To use this parameter, also specify the sortBy parameter and set it to Date.",
+                          "key": "since",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "The order to return news topics in. If using Trending News API and specifying the since query parameter, you must set this parameter to Date.",
+                          "key": "sortBy",
+                          "value": "Relevance"
+                        },
+                        {
+                          "description": "The market where the results come from. Typically the country where the user is making the request from. The market must be in the form <language>-<country/region>. For example, en-US. This parameter and the cc query parameter are mutually exclusive.",
+                          "key": "mkt",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive.",
+                          "key": "cc",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. This parameter and the Accept-Language header are mutually exclusive.",
+                          "key": "setLang",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Used to filter news articles for adult content. The default is Moderate.",
+                          "key": "safeSearch",
+                          "value": "Moderate"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Number of seconds to wait before sending another request",
+                        "type": "text/plain"
+                      },
+                      "key": "Retry-After",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_type\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\",\n      \"moreDetails\": \"<string>\",\n      \"parameter\": \"<string>\",\n      \"subCode\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\",\n      \"moreDetails\": \"<string>\",\n      \"parameter\": \"<string>\",\n      \"subCode\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:13:36.000Z",
+                  "updatedAt": "2026-07-28T01:13:36.000Z",
+                  "uid": "35240-73e39c98-7b6b-4626-bda4-df4d50e7fc75"
+                }
+              ],
+              "createdAt": "2026-07-28T01:13:36.000Z",
+              "updatedAt": "2026-07-28T01:13:36.000Z",
+              "uid": "35240-bd1486ae-d867-4ebd-b02e-320e40fa6ed5"
+            }
+          ],
+          "id": "21a57a75-7519-4e40-b3b4-b4bdb953583a",
+          "createdAt": "2026-07-28T01:13:36.000Z",
+          "updatedAt": "2026-07-28T01:13:36.000Z",
+          "uid": "35240-21a57a75-7519-4e40-b3b4-b4bdb953583a"
+        }
+      ],
+      "id": "11946baa-6d16-4917-99f8-d14c98793e89",
+      "createdAt": "2026-07-28T01:13:36.000Z",
+      "updatedAt": "2026-07-28T01:13:36.000Z",
+      "uid": "35240-11946baa-6d16-4917-99f8-d14c98793e89"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Ocp-Apim-Subscription-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bing.microsoft.com/v7.0"
+    }
+  ]
+}

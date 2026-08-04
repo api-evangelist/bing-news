@@ -1,0 +1,57 @@
+{
+  "info": {
+    "_postman_id": "437525a3-462a-44de-bb94-4feeb135930d",
+    "name": "Bing API v7 News Category News Search API",
+    "description": "The Bing News Search REST API enables developers to retrieve relevant news articles, trending topics, and category-filtered news with image thumbnails and publisher metadata. The API provides search queries against Bing's news index, returning results with titles, descriptions, URLs, publication dates, and related media content.\n\nContact Support:\n Name: Microsoft Bing Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:13:35.000Z",
+    "updatedAt": "2026-07-28T01:13:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-437525a3-462a-44de-bb94-4feeb135930d"
+  },
+  "item": [
+    {
+      "name": "news",
+      "item": [
+        {
+          "name": "search",
+          "item": [],
+          "id": "a4037e9c-5134-4ba9-b1b6-df7ae5b1e90c",
+          "createdAt": "2026-07-28T01:13:35.000Z",
+          "updatedAt": "2026-07-28T01:13:35.000Z",
+          "uid": "35240-a4037e9c-5134-4ba9-b1b6-df7ae5b1e90c"
+        }
+      ],
+      "id": "af844c21-e56c-4c7d-a3f8-49b0a2ceb245",
+      "createdAt": "2026-07-28T01:13:35.000Z",
+      "updatedAt": "2026-07-28T01:13:35.000Z",
+      "uid": "35240-af844c21-e56c-4c7d-a3f8-49b0a2ceb245"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Ocp-Apim-Subscription-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bing.microsoft.com/v7.0"
+    }
+  ]
+}
