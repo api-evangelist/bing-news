@@ -30,7 +30,7 @@ tags:
   - Trending Topics
 created: '2026-06-13'
 modified: '2026-06-13'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: bing-news:news-category
   name: Bing News Category API
