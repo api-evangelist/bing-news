@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bing News Search API v7 News Category Trending Topics API",
+    "version": "7.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Ocp-Apim-Subscription-Key",
+      "value": "{{Ocp-Apim-Subscription-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Trending Topics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Trending News Topics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bing.microsoft.com/v7.0/news/trendingtopics",
+            "headers": [
+              {
+                "name": "Ocp-Apim-Subscription-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "The UNIX epoch time (Unix timestamp) that Bing uses to select the trending topics. Bing returns trending topics that it discovered on or after the specified date and time. To use this parameter, also specify the sortBy parameter and set it to Date."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "The order to return news topics in. If using Trending News API and specifying the since query parameter, you must set this parameter to Date."
+              },
+              {
+                "name": "mkt",
+                "value": "",
+                "type": "query",
+                "description": "The market where the results come from. Typically the country where the user is making the request from. The market must be in the form <language>-<country/region>. For example, en-US. This parameter and the cc query parameter are mutually exclusive."
+              },
+              {
+                "name": "cc",
+                "value": "",
+                "type": "query",
+                "description": "A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive."
+              },
+              {
+                "name": "setLang",
+                "value": "",
+                "type": "query",
+                "description": "The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. This parameter and the Accept-Language header are mutually exclusive."
+              },
+              {
+                "name": "safeSearch",
+                "value": "",
+                "type": "query",
+                "description": "Used to filter news articles for adult content. The default is Moderate."
+              }
+            ]
+          },
+          "docs": "Returns news topics that are currently trending on social networks. Supports filtering by Unix epoch timestamp (since parameter) to retrieve topics discovered after a specific point in time. Results include topic names, related search queries, and image thumbnails. Only available in supported markets."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

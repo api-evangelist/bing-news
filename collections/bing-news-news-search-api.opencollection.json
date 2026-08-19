@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bing API v7 News Category News Search API",
+    "version": "7.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Ocp-Apim-Subscription-Key",
+      "value": "{{Ocp-Apim-Subscription-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "News Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search News Articles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bing.microsoft.com/v7.0/news/search",
+            "headers": [
+              {
+                "name": "Ocp-Apim-Subscription-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "The user's search query term. If the term is empty (e.g., q=), the response includes the top news stories. The term may contain Bing Advanced Operators."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "The number of news articles to return in the response. The actual number delivered may be less than requested. The default is 10 and the maximum is 100. Use this parameter only when calling the /news/search endpoint."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The zero-based offset that indicates the number of news articles to skip before returning results. The default is 0. Use this parameter only when calling the /news/search endpoint."
+              },
+              {
+                "name": "mkt",
+                "value": "",
+                "type": "query",
+                "description": "The market where the results come from. Typically the country where the user is making the request from. The market must be in the form <language>-<country/region>. For example, en-US. This parameter and the cc query parameter are mutually exclusive."
+              },
+              {
+                "name": "cc",
+                "value": "",
+                "type": "query",
+                "description": "A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive."
+              },
+              {
+                "name": "setLang",
+                "value": "",
+                "type": "query",
+                "description": "The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. This parameter and the Accept-Language header are mutually exclusive."
+              },
+              {
+                "name": "safeSearch",
+                "value": "",
+                "type": "query",
+                "description": "Used to filter news articles for adult content. The default is Moderate."
+              },
+              {
+                "name": "freshness",
+                "value": "",
+                "type": "query",
+                "description": "Filter news articles by age. Use this parameter only when calling the /news/search endpoint."
+              },
+              {
+                "name": "originalImg",
+                "value": "",
+                "type": "query",
+                "description": "If true, the Image object includes the contentUrl field pointing to the original image on the publisher's website. Otherwise, only the thumbnail field is included. Use this parameter only with /news/search."
+              },
+              {
+                "name": "textDecorations",
+                "value": "",
+                "type": "query",
+                "description": "A Boolean value that determines whether display strings in the results should contain decoration markers such as hit highlighting characters. The default is false."
+              },
+              {
+                "name": "textFormat",
+                "value": "",
+                "type": "query",
+                "description": "The type of markers to use for text decorations (see the textDecorations query parameter). Raw uses Unicode characters; HTML uses HTML tags."
+              }
+            ]
+          },
+          "docs": "Returns news articles relevant to a user's search query. Supports filtering by freshness, market, safe search level, and category. Results include article titles, descriptions, URLs, publication times, image thumbnails, and publisher metadata. If the search query is empty, the call returns the top news articles."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

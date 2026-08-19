@@ -1,0 +1,469 @@
+{
+  "item": [
+    {
+      "id": "f4b68829-93bc-40aa-bdda-ddb6a1cef10d",
+      "name": "News Category",
+      "description": {
+        "content": "Get top news articles by category",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "73381025-3df8-48c0-a6d1-16420bcefce0",
+          "name": "Get Top News by Category",
+          "request": {
+            "name": "Get Top News by Category",
+            "description": {
+              "content": "Returns top news articles filtered by category (e.g., Business, Entertainment, Sports, Health, ScienceAndTechnology, Politics, World). Supports multiple markets with locale-specific category taxonomies. No search query is required; results reflect top headlines for the chosen category in the specified market.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "news"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "The category of news articles to return. Use this parameter only with the /news endpoint. If not specified, the response includes up to 10 headline news articles typically published in the last 24 hours from any category."
+                },
+                {
+                  "disabled": false,
+                  "key": "mkt",
+                  "value": "<string>",
+                  "description": "The market where the results come from. Typically the country where the user is making the request from. The market must be in the form <language>-<country/region>. For example, en-US. This parameter and the cc query parameter are mutually exclusive."
+                },
+                {
+                  "disabled": false,
+                  "key": "cc",
+                  "value": "<string>",
+                  "description": "A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive."
+                },
+                {
+                  "disabled": false,
+                  "key": "setLang",
+                  "value": "<string>",
+                  "description": "The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. This parameter and the Accept-Language header are mutually exclusive."
+                },
+                {
+                  "disabled": false,
+                  "key": "safeSearch",
+                  "value": "Moderate",
+                  "description": "Used to filter news articles for adult content. The default is Moderate."
+                },
+                {
+                  "disabled": false,
+                  "key": "textDecorations",
+                  "value": "false",
+                  "description": "A Boolean value that determines whether display strings in the results should contain decoration markers such as hit highlighting characters. The default is false."
+                },
+                {
+                  "disabled": false,
+                  "key": "textFormat",
+                  "value": "Raw",
+                  "description": "The type of markers to use for text decorations (see the textDecorations query parameter). Raw uses Unicode characters; HTML uses HTML tags."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                "key": "Ocp-Apim-Subscription-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6b9db067-1af7-4915-a9a5-3f6a81c04818",
+              "name": "Successful category news response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "Sports"
+                    },
+                    {
+                      "key": "mkt",
+                      "value": "en-US"
+                    },
+                    {
+                      "key": "cc",
+                      "value": "US"
+                    },
+                    {
+                      "key": "setLang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "safeSearch",
+                      "value": "Moderate"
+                    },
+                    {
+                      "key": "textDecorations",
+                      "value": "false"
+                    },
+                    {
+                      "key": "textFormat",
+                      "value": "Raw"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The market used by the request. The form is <languageCode>-<countryCode>. For example, en-US.",
+                  "key": "BingAPIs-Market",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The ID of the log entry that contains the details of the request. Capture this ID when an error occurs.",
+                  "key": "BingAPIs-TraceId",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Bing uses this header to provide users with consistent behavior across Bing API calls. Persist and reuse across sessions for a given user on a given device.",
+                  "key": "X-MSEdge-ClientID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_type\": \"string\",\n  \"id\": \"string\",\n  \"readLink\": \"string\",\n  \"relatedTopics\": [\n    {\n      \"relatedNews\": {\n        \"category\": \"string\",\n        \"clusteredArticles\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/NewsArticle detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/NewsArticle detected>\"\n          }\n        ],\n        \"datePublished\": \"2024-01-15T14:30:00\",\n        \"description\": \"string\",\n        \"headline\": true,\n        \"id\": \"string\",\n        \"image\": {\n          \"provider\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"thumbnail\": {\n            \"contentUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"url\": \"string\"\n        },\n        \"mentions\": [\n          {\n            \"name\": \"string\"\n          },\n          {\n            \"name\": \"string\"\n          }\n        ],\n        \"name\": \"string\",\n        \"provider\": [\n          {\n            \"_type\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"_type\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"url\": \"string\",\n        \"video\": {\n          \"allowHttpsEmbed\": true,\n          \"embedHtml\": \"string\",\n          \"motionThumbnailUrl\": \"string\",\n          \"name\": \"string\",\n          \"thumbnail\": {\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"thumbnailUrl\": \"string\"\n        }\n      },\n      \"name\": \"string\",\n      \"webSearchUrl\": \"string\"\n    },\n    {\n      \"relatedNews\": {\n        \"category\": \"string\",\n        \"clusteredArticles\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/NewsArticle detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/NewsArticle detected>\"\n          }\n        ],\n        \"datePublished\": \"2024-01-15T14:30:00\",\n        \"description\": \"string\",\n        \"headline\": false,\n        \"id\": \"string\",\n        \"image\": {\n          \"provider\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"thumbnail\": {\n            \"contentUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"url\": \"string\"\n        },\n        \"mentions\": [\n          {\n            \"name\": \"string\"\n          },\n          {\n            \"name\": \"string\"\n          }\n        ],\n        \"name\": \"string\",\n        \"provider\": [\n          {\n            \"_type\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"_type\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"url\": \"string\",\n        \"video\": {\n          \"allowHttpsEmbed\": true,\n          \"embedHtml\": \"string\",\n          \"motionThumbnailUrl\": \"string\",\n          \"name\": \"string\",\n          \"thumbnail\": {\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"thumbnailUrl\": \"string\"\n        }\n      },\n      \"name\": \"string\",\n      \"webSearchUrl\": \"string\"\n    }\n  ],\n  \"sort\": [\n    {\n      \"id\": \"date\",\n      \"isSelected\": true,\n      \"name\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"id\": \"relevance\",\n      \"isSelected\": true,\n      \"name\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"totalEstimatedMatches\": 7740,\n  \"value\": [\n    {\n      \"category\": \"string\",\n      \"clusteredArticles\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/NewsArticle detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/NewsArticle detected>\"\n        }\n      ],\n      \"datePublished\": \"2024-01-15T14:30:00\",\n      \"description\": \"string\",\n      \"headline\": false,\n      \"id\": \"string\",\n      \"image\": {\n        \"provider\": [\n          {\n            \"_type\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"_type\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"thumbnail\": {\n          \"contentUrl\": \"string\",\n          \"height\": 1562,\n          \"width\": 8678\n        },\n        \"url\": \"string\"\n      },\n      \"mentions\": [\n        {\n          \"name\": \"string\"\n        },\n        {\n          \"name\": \"string\"\n        }\n      ],\n      \"name\": \"string\",\n      \"provider\": [\n        {\n          \"_type\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"_type\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"url\": \"string\",\n      \"video\": {\n        \"allowHttpsEmbed\": true,\n        \"embedHtml\": \"string\",\n        \"motionThumbnailUrl\": \"string\",\n        \"name\": \"string\",\n        \"thumbnail\": {\n          \"height\": 9086,\n          \"width\": 9339\n        },\n        \"thumbnailUrl\": \"string\"\n      }\n    },\n    {\n      \"category\": \"string\",\n      \"clusteredArticles\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/NewsArticle detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/NewsArticle detected>\"\n        }\n      ],\n      \"datePublished\": \"2024-01-15T14:30:00\",\n      \"description\": \"string\",\n      \"headline\": true,\n      \"id\": \"string\",\n      \"image\": {\n        \"provider\": [\n          {\n            \"_type\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"_type\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"thumbnail\": {\n          \"contentUrl\": \"string\",\n          \"height\": 4359,\n          \"width\": 1989\n        },\n        \"url\": \"string\"\n      },\n      \"mentions\": [\n        {\n          \"name\": \"string\"\n        },\n        {\n          \"name\": \"string\"\n        }\n      ],\n      \"name\": \"string\",\n      \"provider\": [\n        {\n          \"_type\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"_type\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"url\": \"string\",\n      \"video\": {\n        \"allowHttpsEmbed\": true,\n        \"embedHtml\": \"string\",\n        \"motionThumbnailUrl\": \"string\",\n        \"name\": \"string\",\n        \"thumbnail\": {\n          \"height\": 683,\n          \"width\": 7997\n        },\n        \"thumbnailUrl\": \"string\"\n      }\n    }\n  ],\n  \"webSearchUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b3d8e8f-25fc-40fa-8faa-b43a4ea81797",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "Sports"
+                    },
+                    {
+                      "key": "mkt",
+                      "value": "en-US"
+                    },
+                    {
+                      "key": "cc",
+                      "value": "US"
+                    },
+                    {
+                      "key": "setLang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "safeSearch",
+                      "value": "Moderate"
+                    },
+                    {
+                      "key": "textDecorations",
+                      "value": "false"
+                    },
+                    {
+                      "key": "textFormat",
+                      "value": "Raw"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_type\": \"string\",\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"moreDetails\": \"string\",\n      \"parameter\": \"string\",\n      \"subCode\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"moreDetails\": \"string\",\n      \"parameter\": \"string\",\n      \"subCode\": \"string\",\n      \"value\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d8673dd-d513-4b94-9026-650cef83c444",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "Sports"
+                    },
+                    {
+                      "key": "mkt",
+                      "value": "en-US"
+                    },
+                    {
+                      "key": "cc",
+                      "value": "US"
+                    },
+                    {
+                      "key": "setLang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "safeSearch",
+                      "value": "Moderate"
+                    },
+                    {
+                      "key": "textDecorations",
+                      "value": "false"
+                    },
+                    {
+                      "key": "textFormat",
+                      "value": "Raw"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_type\": \"string\",\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"moreDetails\": \"string\",\n      \"parameter\": \"string\",\n      \"subCode\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"moreDetails\": \"string\",\n      \"parameter\": \"string\",\n      \"subCode\": \"string\",\n      \"value\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4300828-de7c-4e09-8078-56ebdd538c5b",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "Sports"
+                    },
+                    {
+                      "key": "mkt",
+                      "value": "en-US"
+                    },
+                    {
+                      "key": "cc",
+                      "value": "US"
+                    },
+                    {
+                      "key": "setLang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "safeSearch",
+                      "value": "Moderate"
+                    },
+                    {
+                      "key": "textDecorations",
+                      "value": "false"
+                    },
+                    {
+                      "key": "textFormat",
+                      "value": "Raw"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Number of seconds to wait before sending another request",
+                  "key": "Retry-After",
+                  "value": "6960"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_type\": \"string\",\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"moreDetails\": \"string\",\n      \"parameter\": \"string\",\n      \"subCode\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"moreDetails\": \"string\",\n      \"parameter\": \"string\",\n      \"subCode\": \"string\",\n      \"value\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bing.microsoft.com/v7.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Ocp-Apim-Subscription-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "53597dc6-68bc-4ebd-9c9d-3c20cb155931",
+    "name": "Bing News Search API v7 News Category API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Bing News Search REST API enables developers to retrieve relevant news articles, trending topics, and category-filtered news with image thumbnails and publisher metadata. The API provides search queries against Bing's news index, returning results with titles, descriptions, URLs, publication dates, and related media content.\n\nContact Support:\n Name: Microsoft Bing Support",
+      "type": "text/plain"
+    }
+  }
+}

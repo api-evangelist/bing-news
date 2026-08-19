@@ -1,0 +1,452 @@
+{
+  "item": [
+    {
+      "id": "59f2b0a9-18fa-44a3-9d57-280bd47b4992",
+      "name": "Trending Topics",
+      "description": {
+        "content": "Get currently trending news topics from social networks",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d7f5b2b2-cce8-49f6-bad0-849d8ef03cbc",
+          "name": "Get Trending News Topics",
+          "request": {
+            "name": "Get Trending News Topics",
+            "description": {
+              "content": "Returns news topics that are currently trending on social networks. Supports filtering by Unix epoch timestamp (since parameter) to retrieve topics discovered after a specific point in time. Results include topic names, related search queries, and image thumbnails. Only available in supported markets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "news",
+                "trendingtopics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "since",
+                  "value": "<long>",
+                  "description": "The UNIX epoch time (Unix timestamp) that Bing uses to select the trending topics. Bing returns trending topics that it discovered on or after the specified date and time. To use this parameter, also specify the sortBy parameter and set it to Date."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "The order to return news topics in. If using Trending News API and specifying the since query parameter, you must set this parameter to Date."
+                },
+                {
+                  "disabled": false,
+                  "key": "mkt",
+                  "value": "<string>",
+                  "description": "The market where the results come from. Typically the country where the user is making the request from. The market must be in the form <language>-<country/region>. For example, en-US. This parameter and the cc query parameter are mutually exclusive."
+                },
+                {
+                  "disabled": false,
+                  "key": "cc",
+                  "value": "<string>",
+                  "description": "A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive."
+                },
+                {
+                  "disabled": false,
+                  "key": "setLang",
+                  "value": "<string>",
+                  "description": "The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. This parameter and the Accept-Language header are mutually exclusive."
+                },
+                {
+                  "disabled": false,
+                  "key": "safeSearch",
+                  "value": "Moderate",
+                  "description": "Used to filter news articles for adult content. The default is Moderate."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                "key": "Ocp-Apim-Subscription-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "827a5883-0cb2-46ef-be71-fd91d0c5580f",
+              "name": "Successful trending topics response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "trendingtopics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mkt",
+                      "value": "en-US"
+                    },
+                    {
+                      "key": "cc",
+                      "value": "US"
+                    },
+                    {
+                      "key": "setLang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "safeSearch",
+                      "value": "Moderate"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The market used by the request. The form is <languageCode>-<countryCode>. For example, en-US.",
+                  "key": "BingAPIs-Market",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The ID of the log entry that contains the details of the request. Capture this ID when an error occurs.",
+                  "key": "BingAPIs-TraceId",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Bing uses this header to provide users with consistent behavior across Bing API calls. Persist and reuse across sessions for a given user on a given device.",
+                  "key": "X-MSEdge-ClientID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"image\": {\n        \"provider\": [\n          {\n            \"_type\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"_type\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"thumbnail\": {\n          \"contentUrl\": \"string\",\n          \"height\": 3738,\n          \"width\": 1776\n        },\n        \"url\": \"string\"\n      },\n      \"isBreakingNews\": false,\n      \"name\": \"string\",\n      \"newsSearchUrl\": \"string\",\n      \"query\": {\n        \"text\": \"string\"\n      },\n      \"webSearchUrl\": \"string\"\n    },\n    {\n      \"image\": {\n        \"provider\": [\n          {\n            \"_type\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"_type\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"thumbnail\": {\n          \"contentUrl\": \"string\",\n          \"height\": 1378,\n          \"width\": 4606\n        },\n        \"url\": \"string\"\n      },\n      \"isBreakingNews\": false,\n      \"name\": \"string\",\n      \"newsSearchUrl\": \"string\",\n      \"query\": {\n        \"text\": \"string\"\n      },\n      \"webSearchUrl\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "964864e8-6dec-43d5-926a-ea6c9e93da42",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "trendingtopics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mkt",
+                      "value": "en-US"
+                    },
+                    {
+                      "key": "cc",
+                      "value": "US"
+                    },
+                    {
+                      "key": "setLang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "safeSearch",
+                      "value": "Moderate"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_type\": \"string\",\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"moreDetails\": \"string\",\n      \"parameter\": \"string\",\n      \"subCode\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"moreDetails\": \"string\",\n      \"parameter\": \"string\",\n      \"subCode\": \"string\",\n      \"value\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26d5a95c-f85e-4317-8882-658b54377a25",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "trendingtopics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mkt",
+                      "value": "en-US"
+                    },
+                    {
+                      "key": "cc",
+                      "value": "US"
+                    },
+                    {
+                      "key": "setLang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "safeSearch",
+                      "value": "Moderate"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_type\": \"string\",\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"moreDetails\": \"string\",\n      \"parameter\": \"string\",\n      \"subCode\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"moreDetails\": \"string\",\n      \"parameter\": \"string\",\n      \"subCode\": \"string\",\n      \"value\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5fba20bb-7c7a-477d-a115-3ff4db42de1c",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "trendingtopics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mkt",
+                      "value": "en-US"
+                    },
+                    {
+                      "key": "cc",
+                      "value": "US"
+                    },
+                    {
+                      "key": "setLang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "safeSearch",
+                      "value": "Moderate"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Number of seconds to wait before sending another request",
+                  "key": "Retry-After",
+                  "value": "441"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_type\": \"string\",\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"moreDetails\": \"string\",\n      \"parameter\": \"string\",\n      \"subCode\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"moreDetails\": \"string\",\n      \"parameter\": \"string\",\n      \"subCode\": \"string\",\n      \"value\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bing.microsoft.com/v7.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Ocp-Apim-Subscription-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c890a01b-3b17-480a-8e45-2898a27b8d48",
+    "name": "Bing News Search API v7 News Category Trending Topics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Bing News Search REST API enables developers to retrieve relevant news articles, trending topics, and category-filtered news with image thumbnails and publisher metadata. The API provides search queries against Bing's news index, returning results with titles, descriptions, URLs, publication dates, and related media content.\n\nContact Support:\n Name: Microsoft Bing Support",
+      "type": "text/plain"
+    }
+  }
+}

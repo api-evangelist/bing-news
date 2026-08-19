@@ -1,0 +1,657 @@
+{
+  "item": [
+    {
+      "id": "486512fc-8b4c-417a-86e8-2947106ca634",
+      "name": "News Search",
+      "description": {
+        "content": "Search for news articles by keyword query",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "df57e3db-c496-4515-ad2d-8ce910392690",
+          "name": "Search News Articles",
+          "request": {
+            "name": "Search News Articles",
+            "description": {
+              "content": "Returns news articles relevant to a user's search query. Supports filtering by freshness, market, safe search level, and category. Results include article titles, descriptions, URLs, publication times, image thumbnails, and publisher metadata. If the search query is empty, the call returns the top news articles.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "news",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) The user's search query term. If the term is empty (e.g., q=), the response includes the top news stories. The term may contain Bing Advanced Operators."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "The number of news articles to return in the response. The actual number delivered may be less than requested. The default is 10 and the maximum is 100. Use this parameter only when calling the /news/search endpoint."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The zero-based offset that indicates the number of news articles to skip before returning results. The default is 0. Use this parameter only when calling the /news/search endpoint."
+                },
+                {
+                  "disabled": false,
+                  "key": "mkt",
+                  "value": "<string>",
+                  "description": "The market where the results come from. Typically the country where the user is making the request from. The market must be in the form <language>-<country/region>. For example, en-US. This parameter and the cc query parameter are mutually exclusive."
+                },
+                {
+                  "disabled": false,
+                  "key": "cc",
+                  "value": "<string>",
+                  "description": "A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive."
+                },
+                {
+                  "disabled": false,
+                  "key": "setLang",
+                  "value": "<string>",
+                  "description": "The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. This parameter and the Accept-Language header are mutually exclusive."
+                },
+                {
+                  "disabled": false,
+                  "key": "safeSearch",
+                  "value": "Moderate",
+                  "description": "Used to filter news articles for adult content. The default is Moderate."
+                },
+                {
+                  "disabled": false,
+                  "key": "freshness",
+                  "value": "<string>",
+                  "description": "Filter news articles by age. Use this parameter only when calling the /news/search endpoint."
+                },
+                {
+                  "disabled": false,
+                  "key": "originalImg",
+                  "value": "false",
+                  "description": "If true, the Image object includes the contentUrl field pointing to the original image on the publisher's website. Otherwise, only the thumbnail field is included. Use this parameter only with /news/search."
+                },
+                {
+                  "disabled": false,
+                  "key": "textDecorations",
+                  "value": "false",
+                  "description": "A Boolean value that determines whether display strings in the results should contain decoration markers such as hit highlighting characters. The default is false."
+                },
+                {
+                  "disabled": false,
+                  "key": "textFormat",
+                  "value": "Raw",
+                  "description": "The type of markers to use for text decorations (see the textDecorations query parameter). Raw uses Unicode characters; HTML uses HTML tags."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                "key": "Ocp-Apim-Subscription-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "26d52aae-ea2c-4cf9-b0c6-99e655b8b34f",
+              "name": "Successful news search response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "mkt",
+                      "value": "en-US"
+                    },
+                    {
+                      "key": "cc",
+                      "value": "US"
+                    },
+                    {
+                      "key": "setLang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "safeSearch",
+                      "value": "Moderate"
+                    },
+                    {
+                      "key": "freshness",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "originalImg",
+                      "value": "false"
+                    },
+                    {
+                      "key": "textDecorations",
+                      "value": "false"
+                    },
+                    {
+                      "key": "textFormat",
+                      "value": "Raw"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The market used by the request. The form is <languageCode>-<countryCode>. For example, en-US.",
+                  "key": "BingAPIs-Market",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The ID of the log entry that contains the details of the request. Capture this ID when an error occurs.",
+                  "key": "BingAPIs-TraceId",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Bing uses this header to provide users with consistent behavior across Bing API calls. Persist and reuse across sessions for a given user on a given device.",
+                  "key": "X-MSEdge-ClientID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_type\": \"string\",\n  \"id\": \"string\",\n  \"readLink\": \"string\",\n  \"relatedTopics\": [\n    {\n      \"relatedNews\": {\n        \"category\": \"string\",\n        \"clusteredArticles\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/NewsArticle detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/NewsArticle detected>\"\n          }\n        ],\n        \"datePublished\": \"2024-01-15T14:30:00\",\n        \"description\": \"string\",\n        \"headline\": true,\n        \"id\": \"string\",\n        \"image\": {\n          \"provider\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"thumbnail\": {\n            \"contentUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"url\": \"string\"\n        },\n        \"mentions\": [\n          {\n            \"name\": \"string\"\n          },\n          {\n            \"name\": \"string\"\n          }\n        ],\n        \"name\": \"string\",\n        \"provider\": [\n          {\n            \"_type\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"_type\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"url\": \"string\",\n        \"video\": {\n          \"allowHttpsEmbed\": false,\n          \"embedHtml\": \"string\",\n          \"motionThumbnailUrl\": \"string\",\n          \"name\": \"string\",\n          \"thumbnail\": {\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"thumbnailUrl\": \"string\"\n        }\n      },\n      \"name\": \"string\",\n      \"webSearchUrl\": \"string\"\n    },\n    {\n      \"relatedNews\": {\n        \"category\": \"string\",\n        \"clusteredArticles\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/NewsArticle detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/NewsArticle detected>\"\n          }\n        ],\n        \"datePublished\": \"2024-01-15T14:30:00\",\n        \"description\": \"string\",\n        \"headline\": true,\n        \"id\": \"string\",\n        \"image\": {\n          \"provider\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"thumbnail\": {\n            \"contentUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"url\": \"string\"\n        },\n        \"mentions\": [\n          {\n            \"name\": \"string\"\n          },\n          {\n            \"name\": \"string\"\n          }\n        ],\n        \"name\": \"string\",\n        \"provider\": [\n          {\n            \"_type\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"_type\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"url\": \"string\",\n        \"video\": {\n          \"allowHttpsEmbed\": false,\n          \"embedHtml\": \"string\",\n          \"motionThumbnailUrl\": \"string\",\n          \"name\": \"string\",\n          \"thumbnail\": {\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"thumbnailUrl\": \"string\"\n        }\n      },\n      \"name\": \"string\",\n      \"webSearchUrl\": \"string\"\n    }\n  ],\n  \"sort\": [\n    {\n      \"id\": \"date\",\n      \"isSelected\": false,\n      \"name\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"id\": \"date\",\n      \"isSelected\": true,\n      \"name\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"totalEstimatedMatches\": 838,\n  \"value\": [\n    {\n      \"category\": \"string\",\n      \"clusteredArticles\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/NewsArticle detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/NewsArticle detected>\"\n        }\n      ],\n      \"datePublished\": \"2024-01-15T14:30:00\",\n      \"description\": \"string\",\n      \"headline\": true,\n      \"id\": \"string\",\n      \"image\": {\n        \"provider\": [\n          {\n            \"_type\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"_type\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"thumbnail\": {\n          \"contentUrl\": \"string\",\n          \"height\": 2833,\n          \"width\": 6530\n        },\n        \"url\": \"string\"\n      },\n      \"mentions\": [\n        {\n          \"name\": \"string\"\n        },\n        {\n          \"name\": \"string\"\n        }\n      ],\n      \"name\": \"string\",\n      \"provider\": [\n        {\n          \"_type\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"_type\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"url\": \"string\",\n      \"video\": {\n        \"allowHttpsEmbed\": false,\n        \"embedHtml\": \"string\",\n        \"motionThumbnailUrl\": \"string\",\n        \"name\": \"string\",\n        \"thumbnail\": {\n          \"height\": 6117,\n          \"width\": 6995\n        },\n        \"thumbnailUrl\": \"string\"\n      }\n    },\n    {\n      \"category\": \"string\",\n      \"clusteredArticles\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/NewsArticle detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/NewsArticle detected>\"\n        }\n      ],\n      \"datePublished\": \"2024-01-15T14:30:00\",\n      \"description\": \"string\",\n      \"headline\": false,\n      \"id\": \"string\",\n      \"image\": {\n        \"provider\": [\n          {\n            \"_type\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"_type\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"thumbnail\": {\n          \"contentUrl\": \"string\",\n          \"height\": 1883,\n          \"width\": 3967\n        },\n        \"url\": \"string\"\n      },\n      \"mentions\": [\n        {\n          \"name\": \"string\"\n        },\n        {\n          \"name\": \"string\"\n        }\n      ],\n      \"name\": \"string\",\n      \"provider\": [\n        {\n          \"_type\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"_type\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"url\": \"string\",\n      \"video\": {\n        \"allowHttpsEmbed\": false,\n        \"embedHtml\": \"string\",\n        \"motionThumbnailUrl\": \"string\",\n        \"name\": \"string\",\n        \"thumbnail\": {\n          \"height\": 7622,\n          \"width\": 6557\n        },\n        \"thumbnailUrl\": \"string\"\n      }\n    }\n  ],\n  \"webSearchUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9356eea0-2f8d-426a-9054-c2da92458279",
+              "name": "Bad request - invalid query parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "mkt",
+                      "value": "en-US"
+                    },
+                    {
+                      "key": "cc",
+                      "value": "US"
+                    },
+                    {
+                      "key": "setLang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "safeSearch",
+                      "value": "Moderate"
+                    },
+                    {
+                      "key": "freshness",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "originalImg",
+                      "value": "false"
+                    },
+                    {
+                      "key": "textDecorations",
+                      "value": "false"
+                    },
+                    {
+                      "key": "textFormat",
+                      "value": "Raw"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_type\": \"string\",\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"moreDetails\": \"string\",\n      \"parameter\": \"string\",\n      \"subCode\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"moreDetails\": \"string\",\n      \"parameter\": \"string\",\n      \"subCode\": \"string\",\n      \"value\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ec73d45-bbbe-445a-9d00-3dd49d647335",
+              "name": "Unauthorized - invalid or missing subscription key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "mkt",
+                      "value": "en-US"
+                    },
+                    {
+                      "key": "cc",
+                      "value": "US"
+                    },
+                    {
+                      "key": "setLang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "safeSearch",
+                      "value": "Moderate"
+                    },
+                    {
+                      "key": "freshness",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "originalImg",
+                      "value": "false"
+                    },
+                    {
+                      "key": "textDecorations",
+                      "value": "false"
+                    },
+                    {
+                      "key": "textFormat",
+                      "value": "Raw"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_type\": \"string\",\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"moreDetails\": \"string\",\n      \"parameter\": \"string\",\n      \"subCode\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"moreDetails\": \"string\",\n      \"parameter\": \"string\",\n      \"subCode\": \"string\",\n      \"value\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3737a1e1-7e01-417b-9d58-f5cbc9ac3075",
+              "name": "Forbidden - quota exceeded or access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "mkt",
+                      "value": "en-US"
+                    },
+                    {
+                      "key": "cc",
+                      "value": "US"
+                    },
+                    {
+                      "key": "setLang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "safeSearch",
+                      "value": "Moderate"
+                    },
+                    {
+                      "key": "freshness",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "originalImg",
+                      "value": "false"
+                    },
+                    {
+                      "key": "textDecorations",
+                      "value": "false"
+                    },
+                    {
+                      "key": "textFormat",
+                      "value": "Raw"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_type\": \"string\",\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"moreDetails\": \"string\",\n      \"parameter\": \"string\",\n      \"subCode\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"moreDetails\": \"string\",\n      \"parameter\": \"string\",\n      \"subCode\": \"string\",\n      \"value\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef2d4c92-4530-49c1-91bf-75d7d2c0c106",
+              "name": "Too Many Requests - rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "mkt",
+                      "value": "en-US"
+                    },
+                    {
+                      "key": "cc",
+                      "value": "US"
+                    },
+                    {
+                      "key": "setLang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "safeSearch",
+                      "value": "Moderate"
+                    },
+                    {
+                      "key": "freshness",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "originalImg",
+                      "value": "false"
+                    },
+                    {
+                      "key": "textDecorations",
+                      "value": "false"
+                    },
+                    {
+                      "key": "textFormat",
+                      "value": "Raw"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The subscription key that you received when you signed up for this service in Azure Portal.",
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Number of seconds to wait before sending another request",
+                  "key": "Retry-After",
+                  "value": "5114"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_type\": \"string\",\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"moreDetails\": \"string\",\n      \"parameter\": \"string\",\n      \"subCode\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"moreDetails\": \"string\",\n      \"parameter\": \"string\",\n      \"subCode\": \"string\",\n      \"value\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bing.microsoft.com/v7.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Ocp-Apim-Subscription-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f89b5801-656b-45da-abea-5e105b93e65b",
+    "name": "Bing API v7 News Category News Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Bing News Search REST API enables developers to retrieve relevant news articles, trending topics, and category-filtered news with image thumbnails and publisher metadata. The API provides search queries against Bing's news index, returning results with titles, descriptions, URLs, publication dates, and related media content.\n\nContact Support:\n Name: Microsoft Bing Support",
+      "type": "text/plain"
+    }
+  }
+}
