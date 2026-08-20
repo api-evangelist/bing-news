@@ -86,6 +86,8 @@ apis:
     https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/overview
   baseURL: https://api.bing.microsoft.com/v7.0/news/search
   tags:
+  - NewsCategory
+  tags_raw:
   - News Category
   properties:
   - type: OpenAPI
