@@ -6,6 +6,18 @@ description: >-
   trending topics, and category-filtered news with image thumbnails and publisher metadata.
   The API provides search queries against Bing's news index, returning results with titles,
   descriptions, URLs, publication dates, and related media content.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
