@@ -1,6 +1,7 @@
 aid: bing-news
-url: https://raw.githubusercontent.com/api-evangelist/bing-news/refs/heads/main/apis.yml
+url: https://www.bing.com/news
 name: Bing News Search
+x-parent: microsoft
 description: >-
   Microsoft Bing News Search REST API enables developers to retrieve relevant news articles,
   trending topics, and category-filtered news with image thumbnails and publisher metadata.
