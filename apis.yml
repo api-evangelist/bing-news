@@ -83,6 +83,13 @@ apis:
   - News
   - Trending
   - Social
+  - Topic
+  - Bing
+  - Microsoft
+  tags_raw:
+  - News
+  - Trending
+  - Social
   - Topics
   - Bing
   - Microsoft
