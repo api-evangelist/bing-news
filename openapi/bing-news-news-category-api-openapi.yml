@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Bing News Search API v7 News Category API
   description: The Bing News Search REST API enables developers to retrieve relevant news articles, trending topics, and category-filtered news with image thumbnails and publisher metadata. The API provides search queries against Bing's news index, returning results with titles, descriptions, URLs, publication dates, and related media content.
@@ -82,19 +82,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
-  headers:
-    BingAPIs-Market:
-      description: The market used by the request. The form is <languageCode>-<countryCode>. For example, en-US.
-      schema:
-        type: string
-    X-MSEdge-ClientID:
-      description: Bing uses this header to provide users with consistent behavior across Bing API calls. Persist and reuse across sessions for a given user on a given device.
-      schema:
-        type: string
-    BingAPIs-TraceId:
-      description: The ID of the log entry that contains the details of the request. Capture this ID when an error occurs.
-      schema:
-        type: string
   parameters:
     OcpApimSubscriptionKey:
       name: Ocp-Apim-Subscription-Key
@@ -103,6 +90,25 @@ components:
       description: The subscription key that you received when you signed up for this service in Azure Portal.
       schema:
         type: string
+    setLang:
+      name: setLang
+      in: query
+      required: false
+      description: The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. This parameter and the Accept-Language header are mutually exclusive.
+      schema:
+        type: string
+        example: en
+    textFormat:
+      name: textFormat
+      in: query
+      required: false
+      description: The type of markers to use for text decorations (see the textDecorations query parameter). Raw uses Unicode characters; HTML uses HTML tags.
+      schema:
+        type: string
+        enum:
+        - Raw
+        - HTML
+        default: Raw
     mkt:
       name: mkt
       in: query
@@ -111,6 +117,16 @@ components:
       schema:
         type: string
         example: en-US
+    cc:
+      name: cc
+      in: query
+      required: false
+      description: A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive.
+      schema:
+        type: string
+        minLength: 2
+        maxLength: 2
+        example: US
     safeSearch:
       name: safeSearch
       in: query
@@ -131,35 +147,19 @@ components:
       schema:
         type: boolean
         default: false
-    setLang:
-      name: setLang
-      in: query
-      required: false
-      description: The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. This parameter and the Accept-Language header are mutually exclusive.
+  headers:
+    BingAPIs-TraceId:
+      description: The ID of the log entry that contains the details of the request. Capture this ID when an error occurs.
       schema:
         type: string
-        example: en
-    cc:
-      name: cc
-      in: query
-      required: false
-      description: A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive.
+    BingAPIs-Market:
+      description: The market used by the request. The form is <languageCode>-<countryCode>. For example, en-US.
       schema:
         type: string
-        minLength: 2
-        maxLength: 2
-        example: US
-    textFormat:
-      name: textFormat
-      in: query
-      required: false
-      description: The type of markers to use for text decorations (see the textDecorations query parameter). Raw uses Unicode characters; HTML uses HTML tags.
+    X-MSEdge-ClientID:
+      description: Bing uses this header to provide users with consistent behavior across Bing API calls. Persist and reuse across sessions for a given user on a given device.
       schema:
         type: string
-        enum:
-        - Raw
-        - HTML
-        default: Raw
   schemas:
     Error:
       type: object
@@ -183,61 +183,6 @@ components:
         value:
           type: string
           description: The query parameter's value that was not valid.
-    SortValue:
-      type: object
-      description: Defines a sort order to use for the request.
-      properties:
-        id:
-          type: string
-          description: An identifier that identifies the articles sort order.
-          enum:
-          - date
-          - relevance
-        isSelected:
-          type: boolean
-          description: A Boolean value that determines whether the response used this sort order.
-        name:
-          type: string
-          description: The display name of the sort order.
-        url:
-          type: string
-          description: A URL that you can use to make the same request using this sort order.
-    RelatedTopic:
-      type: object
-      description: Defines a list of news articles that are related to the search query.
-      properties:
-        relatedNews:
-          $ref: '#/components/schemas/NewsArticle'
-          description: A list of related news articles.
-        name:
-          type: string
-          description: The query term that returned the related news articles.
-        webSearchUrl:
-          type: string
-          description: A URL that takes the user to the Bing search results for the related query.
-    MediaSize:
-      type: object
-      description: Defines the size of the media content.
-      properties:
-        height:
-          type: integer
-          description: The height of the media content, in pixels.
-        width:
-          type: integer
-          description: The width of the media content, in pixels.
-    Thumbnail:
-      type: object
-      description: Defines a link to the related image.
-      properties:
-        contentUrl:
-          type: string
-          description: The URL to the image.
-        height:
-          type: integer
-          description: The height of the image in pixels.
-        width:
-          type: integer
-          description: The width of the image in pixels.
     ErrorResponse:
       type: object
       description: The top-level object that the response includes when the request fails.
@@ -307,6 +252,58 @@ components:
         video:
           $ref: '#/components/schemas/Video'
           description: A video that's related to the news article.
+    RelatedTopic:
+      type: object
+      description: Defines a list of news articles that are related to the search query.
+      properties:
+        relatedNews:
+          $ref: '#/components/schemas/NewsArticle'
+          description: A list of related news articles.
+        name:
+          type: string
+          description: The query term that returned the related news articles.
+        webSearchUrl:
+          type: string
+          description: A URL that takes the user to the Bing search results for the related query.
+    Thing:
+      type: object
+      description: Defines an entity that the article mentions.
+      properties:
+        name:
+          type: string
+          description: The name of the entity that the article mentions.
+    SortValue:
+      type: object
+      description: Defines a sort order to use for the request.
+      properties:
+        id:
+          type: string
+          description: An identifier that identifies the articles sort order.
+          enum:
+          - date
+          - relevance
+        isSelected:
+          type: boolean
+          description: A Boolean value that determines whether the response used this sort order.
+        name:
+          type: string
+          description: The display name of the sort order.
+        url:
+          type: string
+          description: A URL that you can use to make the same request using this sort order.
+    Thumbnail:
+      type: object
+      description: Defines a link to the related image.
+      properties:
+        contentUrl:
+          type: string
+          description: The URL to the image.
+        height:
+          type: integer
+          description: The height of the image in pixels.
+        width:
+          type: integer
+          description: The width of the image in pixels.
     NewsAnswer:
       type: object
       description: The top-level object that the response includes when the news request succeeds.
@@ -342,28 +339,6 @@ components:
         webSearchUrl:
           type: string
           description: A URL to the top news stories on Bing. Included only for /news requests.
-    Image:
-      type: object
-      description: Defines a thumbnail image.
-      properties:
-        provider:
-          type: array
-          description: A list of owners of the image.
-          items:
-            $ref: '#/components/schemas/Organization'
-        thumbnail:
-          $ref: '#/components/schemas/Thumbnail'
-          description: A link to a thumbnail of the image.
-        url:
-          type: string
-          description: A URL to the image.
-    Thing:
-      type: object
-      description: Defines an entity that the article mentions.
-      properties:
-        name:
-          type: string
-          description: The name of the entity that the article mentions.
     Organization:
       type: object
       description: Defines the provider that ran the article.
@@ -396,6 +371,31 @@ components:
         thumbnailUrl:
           type: string
           description: A URL to a thumbnail image of the video.
+    MediaSize:
+      type: object
+      description: Defines the size of the media content.
+      properties:
+        height:
+          type: integer
+          description: The height of the media content, in pixels.
+        width:
+          type: integer
+          description: The width of the media content, in pixels.
+    Image:
+      type: object
+      description: Defines a thumbnail image.
+      properties:
+        provider:
+          type: array
+          description: A list of owners of the image.
+          items:
+            $ref: '#/components/schemas/Organization'
+        thumbnail:
+          $ref: '#/components/schemas/Thumbnail'
+          description: A link to a thumbnail of the image.
+        url:
+          type: string
+          description: A URL to the image.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -1,9 +1,7 @@
 {
   "provider": "bing-news",
   "sources": [
-    "bing-news-news-category-api-openapi.yml",
-    "bing-news-news-search-api-openapi.yml",
-    "bing-news-trending-topics-api-openapi.yml"
+    "_original/bing-news-search-openapi.json"
   ],
   "outputs": [
     "bing-news-news-category-api-openapi.yml",
@@ -13,6 +11,14 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "bing-news-search-openapi.json: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "bing-news-news-category-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bing-news-news-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bing-news-trending-topics-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
