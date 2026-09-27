@@ -42,11 +42,15 @@ tags:
   - Media
   - Headlines
   - Trending Topics
+  - Defunct
 created: '2026-06-13'
 modified: '2026-06-13'
 specificationVersion: '0.23'
 apis:
 - aid: bing-news:news-category
+  x-status: retired
+  x-status-basis: >-
+    Microsoft Lifecycle, fetched 2026-09-23: Bing Search APIs retired 2025-08-11; existing instances decommissioned, no new signups; successor is Grounding with Bing Search in Azure AI Agents. https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement (roadmap#623)
   name: Bing News Category API
   description: >-
     Returns top news articles filtered by category (e.g., Business, Entertainment, Sports, Health, ScienceAndTechnology,
@@ -70,6 +74,9 @@ apis:
     url: >-
       https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/reference/endpoints
 - aid: bing-news:trending-topics
+  x-status: retired
+  x-status-basis: >-
+    Microsoft Lifecycle, fetched 2026-09-23: Bing Search APIs retired 2025-08-11; existing instances decommissioned, no new signups; successor is Grounding with Bing Search in Azure AI Agents. https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement (roadmap#623)
   name: Bing Trending News Topics API
   description: >-
     Returns news topics that are currently trending on social networks. Supports filtering by Unix epoch
@@ -101,6 +108,9 @@ apis:
     url: >-
       https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/reference/endpoints
 - aid: bing-news:bing-news-news-category-api
+  x-status: retired
+  x-status-basis: >-
+    Microsoft Lifecycle, fetched 2026-09-23: Bing Search APIs retired 2025-08-11; existing instances decommissioned, no new signups; successor is Grounding with Bing Search in Azure AI Agents. https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement (roadmap#623)
   name: Bing News Search News Category API
   description: Get top news articles by category
   humanURL: >-
@@ -126,6 +136,9 @@ apis:
   - type: FinOps
     url: finops/bing-news-finops.yml
 - aid: bing-news:bing-news-news-search-api
+  x-status: retired
+  x-status-basis: >-
+    Microsoft Lifecycle, fetched 2026-09-23: Bing Search APIs retired 2025-08-11; existing instances decommissioned, no new signups; successor is Grounding with Bing Search in Azure AI Agents. https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement (roadmap#623)
   name: Bing News Search News Search API
   description: Search for news articles by keyword query
   humanURL: >-
@@ -149,6 +162,9 @@ apis:
   - type: FinOps
     url: finops/bing-news-finops.yml
 - aid: bing-news:bing-news-trending-topics-api
+  x-status: retired
+  x-status-basis: >-
+    Microsoft Lifecycle, fetched 2026-09-23: Bing Search APIs retired 2025-08-11; existing instances decommissioned, no new signups; successor is Grounding with Bing Search in Azure AI Agents. https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement (roadmap#623)
   name: Bing News Search Trending Topics API
   description: Get currently trending news topics from social networks
   humanURL: >-
@@ -207,3 +223,7 @@ common:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-status: defunct
+x-successor: https://learn.microsoft.com/en-us/azure/foundry-classic/agents/how-to/tools-classic/bing-grounding
+x-status-basis: >-
+  Bing Search APIs retired 2025-08-11 per Microsoft Lifecycle (https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement, fetched 2026-09-23): existing instances decommissioned, no new signups. Every API in this record is that product. Endpoints still answer 401 to a keyless probe, so the lifecycle page is the evidence. roadmap#623
