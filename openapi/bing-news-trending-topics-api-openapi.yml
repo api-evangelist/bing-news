@@ -90,53 +90,13 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    Image:
+    Query:
       type: object
-      description: Defines a thumbnail image.
+      description: Defines the search query string.
       properties:
-        provider:
-          type: array
-          description: A list of owners of the image.
-          items:
-            $ref: '#/components/schemas/Organization'
-        thumbnail:
-          $ref: '#/components/schemas/Thumbnail'
-          description: A link to a thumbnail of the image.
-        url:
+        text:
           type: string
-          description: A URL to the image.
-    Topic:
-      type: object
-      description: Defines a trending news topic.
-      properties:
-        image:
-          $ref: '#/components/schemas/Image'
-          description: A link to a related image. The Image object contains only the url and provider fields.
-        isBreakingNews:
-          type: boolean
-          description: A Boolean value that indicates whether the topic is considered breaking news.
-        name:
-          type: string
-          description: The title of the trending topic.
-        newsSearchUrl:
-          type: string
-          description: A URL to the Bing News search results for the search query term.
-        query:
-          $ref: '#/components/schemas/Query'
-          description: A search query term that returns this trending topic.
-        webSearchUrl:
-          type: string
-          description: A URL to the Bing search results for the search query term.
-    Organization:
-      type: object
-      description: Defines the provider that ran the article.
-      properties:
-        _type:
-          type: string
-          description: Type hint.
-        name:
-          type: string
-          description: The name of the provider that ran the article.
+          description: A query string that returns the trending topic.
     ErrorResponse:
       type: object
       description: The top-level object that the response includes when the request fails.
@@ -149,28 +109,16 @@ components:
           description: A list of errors that describe the reasons why the request failed.
           items:
             $ref: '#/components/schemas/Error'
-    Thumbnail:
+    Organization:
       type: object
-      description: Defines a link to the related image.
+      description: Defines the provider that ran the article.
       properties:
-        contentUrl:
+        _type:
           type: string
-          description: The URL to the image.
-        height:
-          type: integer
-          description: The height of the image in pixels.
-        width:
-          type: integer
-          description: The width of the image in pixels.
-    TrendingTopics:
-      type: object
-      description: The top-level object that the response includes when the trending topics request succeeds.
-      properties:
-        value:
-          type: array
-          description: A list of trending news topics on Bing. If there are no results to return, the array is empty.
-          items:
-            $ref: '#/components/schemas/Topic'
+          description: Type hint.
+        name:
+          type: string
+          description: The name of the provider that ran the article.
     Error:
       type: object
       description: Defines the error that occurred.
@@ -193,47 +141,66 @@ components:
         value:
           type: string
           description: The query parameter's value that was not valid.
-    Query:
+    Image:
       type: object
-      description: Defines the search query string.
+      description: Defines a thumbnail image.
       properties:
-        text:
+        provider:
+          type: array
+          description: A list of owners of the image.
+          items:
+            $ref: '#/components/schemas/Organization'
+        thumbnail:
+          $ref: '#/components/schemas/Thumbnail'
+          description: A link to a thumbnail of the image.
+        url:
           type: string
-          description: A query string that returns the trending topic.
-  headers:
-    X-MSEdge-ClientID:
-      description: Bing uses this header to provide users with consistent behavior across Bing API calls. Persist and reuse across sessions for a given user on a given device.
-      schema:
-        type: string
-    BingAPIs-Market:
-      description: The market used by the request. The form is <languageCode>-<countryCode>. For example, en-US.
-      schema:
-        type: string
-    BingAPIs-TraceId:
-      description: The ID of the log entry that contains the details of the request. Capture this ID when an error occurs.
-      schema:
-        type: string
+          description: A URL to the image.
+    Thumbnail:
+      type: object
+      description: Defines a link to the related image.
+      properties:
+        contentUrl:
+          type: string
+          description: The URL to the image.
+        height:
+          type: integer
+          description: The height of the image in pixels.
+        width:
+          type: integer
+          description: The width of the image in pixels.
+    Topic:
+      type: object
+      description: Defines a trending news topic.
+      properties:
+        image:
+          $ref: '#/components/schemas/Image'
+          description: A link to a related image. The Image object contains only the url and provider fields.
+        isBreakingNews:
+          type: boolean
+          description: A Boolean value that indicates whether the topic is considered breaking news.
+        name:
+          type: string
+          description: The title of the trending topic.
+        newsSearchUrl:
+          type: string
+          description: A URL to the Bing News search results for the search query term.
+        query:
+          $ref: '#/components/schemas/Query'
+          description: A search query term that returns this trending topic.
+        webSearchUrl:
+          type: string
+          description: A URL to the Bing search results for the search query term.
+    TrendingTopics:
+      type: object
+      description: The top-level object that the response includes when the trending topics request succeeds.
+      properties:
+        value:
+          type: array
+          description: A list of trending news topics on Bing. If there are no results to return, the array is empty.
+          items:
+            $ref: '#/components/schemas/Topic'
   parameters:
-    mkt:
-      name: mkt
-      in: query
-      required: false
-      description: The market where the results come from. Typically the country where the user is making the request from. The market must be in the form <language>-<country/region>. For example, en-US. This parameter and the cc query parameter are mutually exclusive.
-      schema:
-        type: string
-        example: en-US
-    safeSearch:
-      name: safeSearch
-      in: query
-      required: false
-      description: Used to filter news articles for adult content. The default is Moderate.
-      schema:
-        type: string
-        enum:
-        - 'Off'
-        - Moderate
-        - Strict
-        default: Moderate
     OcpApimSubscriptionKey:
       name: Ocp-Apim-Subscription-Key
       in: header
@@ -259,6 +226,39 @@ components:
         minLength: 2
         maxLength: 2
         example: US
+    mkt:
+      name: mkt
+      in: query
+      required: false
+      description: The market where the results come from. Typically the country where the user is making the request from. The market must be in the form <language>-<country/region>. For example, en-US. This parameter and the cc query parameter are mutually exclusive.
+      schema:
+        type: string
+        example: en-US
+    safeSearch:
+      name: safeSearch
+      in: query
+      required: false
+      description: Used to filter news articles for adult content. The default is Moderate.
+      schema:
+        type: string
+        enum:
+        - 'Off'
+        - Moderate
+        - Strict
+        default: Moderate
+  headers:
+    BingAPIs-TraceId:
+      description: The ID of the log entry that contains the details of the request. Capture this ID when an error occurs.
+      schema:
+        type: string
+    BingAPIs-Market:
+      description: The market used by the request. The form is <languageCode>-<countryCode>. For example, en-US.
+      schema:
+        type: string
+    X-MSEdge-ClientID:
+      description: Bing uses this header to provide users with consistent behavior across Bing API calls. Persist and reuse across sessions for a given user on a given device.
+      schema:
+        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -82,42 +82,36 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
-  headers:
-    X-MSEdge-ClientID:
-      description: Bing uses this header to provide users with consistent behavior across Bing API calls. Persist and reuse across sessions for a given user on a given device.
-      schema:
-        type: string
-    BingAPIs-Market:
-      description: The market used by the request. The form is <languageCode>-<countryCode>. For example, en-US.
-      schema:
-        type: string
-    BingAPIs-TraceId:
-      description: The ID of the log entry that contains the details of the request. Capture this ID when an error occurs.
-      schema:
-        type: string
   schemas:
-    Video:
+    Thing:
       type: object
-      description: Defines a video that's related to the news article.
+      description: Defines an entity that the article mentions.
       properties:
-        allowHttpsEmbed:
-          type: boolean
-          description: A Boolean value that determines whether you may embed the video on pages that use the HTTPS protocol.
-        embedHtml:
-          type: string
-          description: An iFrame that lets you embed and run the video in your webpage.
-        motionThumbnailUrl:
-          type: string
-          description: A URL to an animated thumbnail that shows a preview of the video.
         name:
           type: string
-          description: The name of the video.
-        thumbnail:
-          $ref: '#/components/schemas/MediaSize'
-          description: The width and height of the thumbnail image or motion thumbnail.
-        thumbnailUrl:
+          description: The name of the entity that the article mentions.
+    ErrorResponse:
+      type: object
+      description: The top-level object that the response includes when the request fails.
+      properties:
+        _type:
           type: string
-          description: A URL to a thumbnail image of the video.
+          description: Type hint, which is set to ErrorResponse.
+        errors:
+          type: array
+          description: A list of errors that describe the reasons why the request failed.
+          items:
+            $ref: '#/components/schemas/Error'
+    MediaSize:
+      type: object
+      description: Defines the size of the media content.
+      properties:
+        height:
+          type: integer
+          description: The height of the media content, in pixels.
+        width:
+          type: integer
+          description: The width of the media content, in pixels.
     NewsArticle:
       type: object
       description: Defines a news article.
@@ -175,6 +169,76 @@ components:
         video:
           $ref: '#/components/schemas/Video'
           description: A video that's related to the news article.
+    RelatedTopic:
+      type: object
+      description: Defines a list of news articles that are related to the search query.
+      properties:
+        relatedNews:
+          $ref: '#/components/schemas/NewsArticle'
+          description: A list of related news articles.
+        name:
+          type: string
+          description: The query term that returned the related news articles.
+        webSearchUrl:
+          type: string
+          description: A URL that takes the user to the Bing search results for the related query.
+    Video:
+      type: object
+      description: Defines a video that's related to the news article.
+      properties:
+        allowHttpsEmbed:
+          type: boolean
+          description: A Boolean value that determines whether you may embed the video on pages that use the HTTPS protocol.
+        embedHtml:
+          type: string
+          description: An iFrame that lets you embed and run the video in your webpage.
+        motionThumbnailUrl:
+          type: string
+          description: A URL to an animated thumbnail that shows a preview of the video.
+        name:
+          type: string
+          description: The name of the video.
+        thumbnail:
+          $ref: '#/components/schemas/MediaSize'
+          description: The width and height of the thumbnail image or motion thumbnail.
+        thumbnailUrl:
+          type: string
+          description: A URL to a thumbnail image of the video.
+    Thumbnail:
+      type: object
+      description: Defines a link to the related image.
+      properties:
+        contentUrl:
+          type: string
+          description: The URL to the image.
+        height:
+          type: integer
+          description: The height of the image in pixels.
+        width:
+          type: integer
+          description: The width of the image in pixels.
+    Error:
+      type: object
+      description: Defines the error that occurred.
+      properties:
+        code:
+          type: string
+          description: The error code that identifies the category of error.
+        message:
+          type: string
+          description: A description of the error.
+        moreDetails:
+          type: string
+          description: A description that provides additional information about the error.
+        parameter:
+          type: string
+          description: The query parameter in the request that caused the error.
+        subCode:
+          type: string
+          description: The error code that identifies the error.
+        value:
+          type: string
+          description: The query parameter's value that was not valid.
     NewsAnswer:
       type: object
       description: The top-level object that the response includes when the news request succeeds.
@@ -210,81 +274,6 @@ components:
         webSearchUrl:
           type: string
           description: A URL to the top news stories on Bing. Included only for /news requests.
-    RelatedTopic:
-      type: object
-      description: Defines a list of news articles that are related to the search query.
-      properties:
-        relatedNews:
-          $ref: '#/components/schemas/NewsArticle'
-          description: A list of related news articles.
-        name:
-          type: string
-          description: The query term that returned the related news articles.
-        webSearchUrl:
-          type: string
-          description: A URL that takes the user to the Bing search results for the related query.
-    Error:
-      type: object
-      description: Defines the error that occurred.
-      properties:
-        code:
-          type: string
-          description: The error code that identifies the category of error.
-        message:
-          type: string
-          description: A description of the error.
-        moreDetails:
-          type: string
-          description: A description that provides additional information about the error.
-        parameter:
-          type: string
-          description: The query parameter in the request that caused the error.
-        subCode:
-          type: string
-          description: The error code that identifies the error.
-        value:
-          type: string
-          description: The query parameter's value that was not valid.
-    Organization:
-      type: object
-      description: Defines the provider that ran the article.
-      properties:
-        _type:
-          type: string
-          description: Type hint.
-        name:
-          type: string
-          description: The name of the provider that ran the article.
-    MediaSize:
-      type: object
-      description: Defines the size of the media content.
-      properties:
-        height:
-          type: integer
-          description: The height of the media content, in pixels.
-        width:
-          type: integer
-          description: The width of the media content, in pixels.
-    Thumbnail:
-      type: object
-      description: Defines a link to the related image.
-      properties:
-        contentUrl:
-          type: string
-          description: The URL to the image.
-        height:
-          type: integer
-          description: The height of the image in pixels.
-        width:
-          type: integer
-          description: The width of the image in pixels.
-    Thing:
-      type: object
-      description: Defines an entity that the article mentions.
-      properties:
-        name:
-          type: string
-          description: The name of the entity that the article mentions.
     Image:
       type: object
       description: Defines a thumbnail image.
@@ -300,18 +289,16 @@ components:
         url:
           type: string
           description: A URL to the image.
-    ErrorResponse:
+    Organization:
       type: object
-      description: The top-level object that the response includes when the request fails.
+      description: Defines the provider that ran the article.
       properties:
         _type:
           type: string
-          description: Type hint, which is set to ErrorResponse.
-        errors:
-          type: array
-          description: A list of errors that describe the reasons why the request failed.
-          items:
-            $ref: '#/components/schemas/Error'
+          description: Type hint.
+        name:
+          type: string
+          description: The name of the provider that ran the article.
     SortValue:
       type: object
       description: Defines a sort order to use for the request.
@@ -332,25 +319,16 @@ components:
           type: string
           description: A URL that you can use to make the same request using this sort order.
   parameters:
-    safeSearch:
-      name: safeSearch
+    cc:
+      name: cc
       in: query
       required: false
-      description: Used to filter news articles for adult content. The default is Moderate.
+      description: A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive.
       schema:
         type: string
-        enum:
-        - 'Off'
-        - Moderate
-        - Strict
-        default: Moderate
-    OcpApimSubscriptionKey:
-      name: Ocp-Apim-Subscription-Key
-      in: header
-      required: true
-      description: The subscription key that you received when you signed up for this service in Azure Portal.
-      schema:
-        type: string
+        minLength: 2
+        maxLength: 2
+        example: US
     textFormat:
       name: textFormat
       in: query
@@ -378,16 +356,13 @@ components:
       schema:
         type: string
         example: en-US
-    cc:
-      name: cc
-      in: query
-      required: false
-      description: A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive.
+    OcpApimSubscriptionKey:
+      name: Ocp-Apim-Subscription-Key
+      in: header
+      required: true
+      description: The subscription key that you received when you signed up for this service in Azure Portal.
       schema:
         type: string
-        minLength: 2
-        maxLength: 2
-        example: US
     textDecorations:
       name: textDecorations
       in: query
@@ -396,6 +371,31 @@ components:
       schema:
         type: boolean
         default: false
+    safeSearch:
+      name: safeSearch
+      in: query
+      required: false
+      description: Used to filter news articles for adult content. The default is Moderate.
+      schema:
+        type: string
+        enum:
+        - 'Off'
+        - Moderate
+        - Strict
+        default: Moderate
+  headers:
+    BingAPIs-Market:
+      description: The market used by the request. The form is <languageCode>-<countryCode>. For example, en-US.
+      schema:
+        type: string
+    X-MSEdge-ClientID:
+      description: Bing uses this header to provide users with consistent behavior across Bing API calls. Persist and reuse across sessions for a given user on a given device.
+      schema:
+        type: string
+    BingAPIs-TraceId:
+      description: The ID of the log entry that contains the details of the request. Capture this ID when an error occurs.
+      schema:
+        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
