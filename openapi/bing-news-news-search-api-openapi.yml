@@ -107,6 +107,90 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
+  parameters:
+    setLang:
+      name: setLang
+      in: query
+      required: false
+      description: The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. This parameter and the Accept-Language header are mutually exclusive.
+      schema:
+        type: string
+        example: en
+    textFormat:
+      name: textFormat
+      in: query
+      required: false
+      description: The type of markers to use for text decorations (see the textDecorations query parameter). Raw uses Unicode characters; HTML uses HTML tags.
+      schema:
+        type: string
+        enum:
+        - Raw
+        - HTML
+        default: Raw
+    textDecorations:
+      name: textDecorations
+      in: query
+      required: false
+      description: A Boolean value that determines whether display strings in the results should contain decoration markers such as hit highlighting characters. The default is false.
+      schema:
+        type: boolean
+        default: false
+    OcpApimSubscriptionKey:
+      name: Ocp-Apim-Subscription-Key
+      in: header
+      required: true
+      description: The subscription key that you received when you signed up for this service in Azure Portal.
+      schema:
+        type: string
+    safeSearch:
+      name: safeSearch
+      in: query
+      required: false
+      description: Used to filter news articles for adult content. The default is Moderate.
+      schema:
+        type: string
+        enum:
+        - 'Off'
+        - Moderate
+        - Strict
+        default: Moderate
+    count:
+      name: count
+      in: query
+      required: false
+      description: The number of news articles to return in the response. The actual number delivered may be less than requested. The default is 10 and the maximum is 100. Use this parameter only when calling the /news/search endpoint.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+    cc:
+      name: cc
+      in: query
+      required: false
+      description: A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive.
+      schema:
+        type: string
+        minLength: 2
+        maxLength: 2
+        example: US
+    mkt:
+      name: mkt
+      in: query
+      required: false
+      description: The market where the results come from. Typically the country where the user is making the request from. The market must be in the form <language>-<country/region>. For example, en-US. This parameter and the cc query parameter are mutually exclusive.
+      schema:
+        type: string
+        example: en-US
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The zero-based offset that indicates the number of news articles to skip before returning results. The default is 0. Use this parameter only when calling the /news/search endpoint.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   schemas:
     Thing:
       type: object
@@ -115,28 +199,29 @@ components:
         name:
           type: string
           description: The name of the entity that the article mentions.
-    ErrorResponse:
+    Thumbnail:
       type: object
-      description: The top-level object that the response includes when the request fails.
+      description: Defines a link to the related image.
+      properties:
+        contentUrl:
+          type: string
+          description: The URL to the image.
+        height:
+          type: integer
+          description: The height of the image in pixels.
+        width:
+          type: integer
+          description: The width of the image in pixels.
+    Organization:
+      type: object
+      description: Defines the provider that ran the article.
       properties:
         _type:
           type: string
-          description: Type hint, which is set to ErrorResponse.
-        errors:
-          type: array
-          description: A list of errors that describe the reasons why the request failed.
-          items:
-            $ref: '#/components/schemas/Error'
-    MediaSize:
-      type: object
-      description: Defines the size of the media content.
-      properties:
-        height:
-          type: integer
-          description: The height of the media content, in pixels.
-        width:
-          type: integer
-          description: The width of the media content, in pixels.
+          description: Type hint.
+        name:
+          type: string
+          description: The name of the provider that ran the article.
     NewsArticle:
       type: object
       description: Defines a news article.
@@ -194,19 +279,25 @@ components:
         video:
           $ref: '#/components/schemas/Video'
           description: A video that's related to the news article.
-    RelatedTopic:
+    SortValue:
       type: object
-      description: Defines a list of news articles that are related to the search query.
+      description: Defines a sort order to use for the request.
       properties:
-        relatedNews:
-          $ref: '#/components/schemas/NewsArticle'
-          description: A list of related news articles.
+        id:
+          type: string
+          description: An identifier that identifies the articles sort order.
+          enum:
+          - date
+          - relevance
+        isSelected:
+          type: boolean
+          description: A Boolean value that determines whether the response used this sort order.
         name:
           type: string
-          description: The query term that returned the related news articles.
-        webSearchUrl:
+          description: The display name of the sort order.
+        url:
           type: string
-          description: A URL that takes the user to the Bing search results for the related query.
+          description: A URL that you can use to make the same request using this sort order.
     Video:
       type: object
       description: Defines a video that's related to the news article.
@@ -229,19 +320,6 @@ components:
         thumbnailUrl:
           type: string
           description: A URL to a thumbnail image of the video.
-    Thumbnail:
-      type: object
-      description: Defines a link to the related image.
-      properties:
-        contentUrl:
-          type: string
-          description: The URL to the image.
-        height:
-          type: integer
-          description: The height of the image in pixels.
-        width:
-          type: integer
-          description: The width of the image in pixels.
     Error:
       type: object
       description: Defines the error that occurred.
@@ -264,6 +342,56 @@ components:
         value:
           type: string
           description: The query parameter's value that was not valid.
+    MediaSize:
+      type: object
+      description: Defines the size of the media content.
+      properties:
+        height:
+          type: integer
+          description: The height of the media content, in pixels.
+        width:
+          type: integer
+          description: The width of the media content, in pixels.
+    Image:
+      type: object
+      description: Defines a thumbnail image.
+      properties:
+        provider:
+          type: array
+          description: A list of owners of the image.
+          items:
+            $ref: '#/components/schemas/Organization'
+        thumbnail:
+          $ref: '#/components/schemas/Thumbnail'
+          description: A link to a thumbnail of the image.
+        url:
+          type: string
+          description: A URL to the image.
+    ErrorResponse:
+      type: object
+      description: The top-level object that the response includes when the request fails.
+      properties:
+        _type:
+          type: string
+          description: Type hint, which is set to ErrorResponse.
+        errors:
+          type: array
+          description: A list of errors that describe the reasons why the request failed.
+          items:
+            $ref: '#/components/schemas/Error'
+    RelatedTopic:
+      type: object
+      description: Defines a list of news articles that are related to the search query.
+      properties:
+        relatedNews:
+          $ref: '#/components/schemas/NewsArticle'
+          description: A list of related news articles.
+        name:
+          type: string
+          description: The query term that returned the related news articles.
+        webSearchUrl:
+          type: string
+          description: A URL that takes the user to the Bing search results for the related query.
     NewsAnswer:
       type: object
       description: The top-level object that the response includes when the news request succeeds.
@@ -299,145 +427,17 @@ components:
         webSearchUrl:
           type: string
           description: A URL to the top news stories on Bing. Included only for /news requests.
-    Image:
-      type: object
-      description: Defines a thumbnail image.
-      properties:
-        provider:
-          type: array
-          description: A list of owners of the image.
-          items:
-            $ref: '#/components/schemas/Organization'
-        thumbnail:
-          $ref: '#/components/schemas/Thumbnail'
-          description: A link to a thumbnail of the image.
-        url:
-          type: string
-          description: A URL to the image.
-    Organization:
-      type: object
-      description: Defines the provider that ran the article.
-      properties:
-        _type:
-          type: string
-          description: Type hint.
-        name:
-          type: string
-          description: The name of the provider that ran the article.
-    SortValue:
-      type: object
-      description: Defines a sort order to use for the request.
-      properties:
-        id:
-          type: string
-          description: An identifier that identifies the articles sort order.
-          enum:
-          - date
-          - relevance
-        isSelected:
-          type: boolean
-          description: A Boolean value that determines whether the response used this sort order.
-        name:
-          type: string
-          description: The display name of the sort order.
-        url:
-          type: string
-          description: A URL that you can use to make the same request using this sort order.
-  parameters:
-    cc:
-      name: cc
-      in: query
-      required: false
-      description: A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive.
-      schema:
-        type: string
-        minLength: 2
-        maxLength: 2
-        example: US
-    textFormat:
-      name: textFormat
-      in: query
-      required: false
-      description: The type of markers to use for text decorations (see the textDecorations query parameter). Raw uses Unicode characters; HTML uses HTML tags.
-      schema:
-        type: string
-        enum:
-        - Raw
-        - HTML
-        default: Raw
-    setLang:
-      name: setLang
-      in: query
-      required: false
-      description: The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. This parameter and the Accept-Language header are mutually exclusive.
-      schema:
-        type: string
-        example: en
-    mkt:
-      name: mkt
-      in: query
-      required: false
-      description: The market where the results come from. Typically the country where the user is making the request from. The market must be in the form <language>-<country/region>. For example, en-US. This parameter and the cc query parameter are mutually exclusive.
-      schema:
-        type: string
-        example: en-US
-    count:
-      name: count
-      in: query
-      required: false
-      description: The number of news articles to return in the response. The actual number delivered may be less than requested. The default is 10 and the maximum is 100. Use this parameter only when calling the /news/search endpoint.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 10
-    OcpApimSubscriptionKey:
-      name: Ocp-Apim-Subscription-Key
-      in: header
-      required: true
-      description: The subscription key that you received when you signed up for this service in Azure Portal.
-      schema:
-        type: string
-    offset:
-      name: offset
-      in: query
-      required: false
-      description: The zero-based offset that indicates the number of news articles to skip before returning results. The default is 0. Use this parameter only when calling the /news/search endpoint.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    textDecorations:
-      name: textDecorations
-      in: query
-      required: false
-      description: A Boolean value that determines whether display strings in the results should contain decoration markers such as hit highlighting characters. The default is false.
-      schema:
-        type: boolean
-        default: false
-    safeSearch:
-      name: safeSearch
-      in: query
-      required: false
-      description: Used to filter news articles for adult content. The default is Moderate.
-      schema:
-        type: string
-        enum:
-        - 'Off'
-        - Moderate
-        - Strict
-        default: Moderate
   headers:
-    BingAPIs-Market:
-      description: The market used by the request. The form is <languageCode>-<countryCode>. For example, en-US.
-      schema:
-        type: string
     X-MSEdge-ClientID:
       description: Bing uses this header to provide users with consistent behavior across Bing API calls. Persist and reuse across sessions for a given user on a given device.
       schema:
         type: string
     BingAPIs-TraceId:
       description: The ID of the log entry that contains the details of the request. Capture this ID when an error occurs.
+      schema:
+        type: string
+    BingAPIs-Market:
+      description: The market used by the request. The form is <languageCode>-<countryCode>. For example, en-US.
       schema:
         type: string
   securitySchemes:
