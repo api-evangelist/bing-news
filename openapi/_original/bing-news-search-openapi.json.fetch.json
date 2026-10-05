@@ -1,0 +1,12 @@
+{
+ "url": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/NewsSearch/stable/v1.0/NewsSearch.json",
+ "requested_url": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/NewsSearch/stable/v1.0/NewsSearch.json",
+ "status": 200,
+ "content_type": "text/plain; charset=utf-8",
+ "bytes": 79184,
+ "sha256": "91f1032a90cc4b7dc1ceae2dae527fb981c1b0a948be87c5b4c36ea58133a587",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
