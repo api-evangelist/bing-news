@@ -89,7 +89,75 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
+  parameters:
+    OcpApimSubscriptionKey:
+      name: Ocp-Apim-Subscription-Key
+      in: header
+      required: true
+      description: The subscription key that you received when you signed up for this service in Azure Portal.
+      schema:
+        type: string
+    safeSearch:
+      name: safeSearch
+      in: query
+      required: false
+      description: Used to filter news articles for adult content. The default is Moderate.
+      schema:
+        type: string
+        enum:
+        - 'Off'
+        - Moderate
+        - Strict
+        default: Moderate
+    cc:
+      name: cc
+      in: query
+      required: false
+      description: A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive.
+      schema:
+        type: string
+        minLength: 2
+        maxLength: 2
+        example: US
+    setLang:
+      name: setLang
+      in: query
+      required: false
+      description: The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. This parameter and the Accept-Language header are mutually exclusive.
+      schema:
+        type: string
+        example: en
+    mkt:
+      name: mkt
+      in: query
+      required: false
+      description: The market where the results come from. Typically the country where the user is making the request from. The market must be in the form <language>-<country/region>. For example, en-US. This parameter and the cc query parameter are mutually exclusive.
+      schema:
+        type: string
+        example: en-US
   schemas:
+    Organization:
+      type: object
+      description: Defines the provider that ran the article.
+      properties:
+        _type:
+          type: string
+          description: Type hint.
+        name:
+          type: string
+          description: The name of the provider that ran the article.
+    ErrorResponse:
+      type: object
+      description: The top-level object that the response includes when the request fails.
+      properties:
+        _type:
+          type: string
+          description: Type hint, which is set to ErrorResponse.
+        errors:
+          type: array
+          description: A list of errors that describe the reasons why the request failed.
+          items:
+            $ref: '#/components/schemas/Error'
     Error:
       type: object
       description: Defines the error that occurred.
@@ -112,15 +180,6 @@ components:
         value:
           type: string
           description: The query parameter's value that was not valid.
-    TrendingTopics:
-      type: object
-      description: The top-level object that the response includes when the trending topics request succeeds.
-      properties:
-        value:
-          type: array
-          description: A list of trending news topics on Bing. If there are no results to return, the array is empty.
-          items:
-            $ref: '#/components/schemas/Topic'
     Image:
       type: object
       description: Defines a thumbnail image.
@@ -158,6 +217,13 @@ components:
         webSearchUrl:
           type: string
           description: A URL to the Bing search results for the search query term.
+    Query:
+      type: object
+      description: Defines the search query string.
+      properties:
+        text:
+          type: string
+          description: A query string that returns the trending topic.
     Thumbnail:
       type: object
       description: Defines a link to the related image.
@@ -171,92 +237,26 @@ components:
         width:
           type: integer
           description: The width of the image in pixels.
-    Query:
+    TrendingTopics:
       type: object
-      description: Defines the search query string.
+      description: The top-level object that the response includes when the trending topics request succeeds.
       properties:
-        text:
-          type: string
-          description: A query string that returns the trending topic.
-    Organization:
-      type: object
-      description: Defines the provider that ran the article.
-      properties:
-        _type:
-          type: string
-          description: Type hint.
-        name:
-          type: string
-          description: The name of the provider that ran the article.
-    ErrorResponse:
-      type: object
-      description: The top-level object that the response includes when the request fails.
-      properties:
-        _type:
-          type: string
-          description: Type hint, which is set to ErrorResponse.
-        errors:
+        value:
           type: array
-          description: A list of errors that describe the reasons why the request failed.
+          description: A list of trending news topics on Bing. If there are no results to return, the array is empty.
           items:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    mkt:
-      name: mkt
-      in: query
-      required: false
-      description: The market where the results come from. Typically the country where the user is making the request from. The market must be in the form <language>-<country/region>. For example, en-US. This parameter and the cc query parameter are mutually exclusive.
-      schema:
-        type: string
-        example: en-US
-    setLang:
-      name: setLang
-      in: query
-      required: false
-      description: The language to use for user interface strings. You may specify the language using either a 2-letter or 4-letter code. This parameter and the Accept-Language header are mutually exclusive.
-      schema:
-        type: string
-        example: en
-    safeSearch:
-      name: safeSearch
-      in: query
-      required: false
-      description: Used to filter news articles for adult content. The default is Moderate.
-      schema:
-        type: string
-        enum:
-        - 'Off'
-        - Moderate
-        - Strict
-        default: Moderate
-    OcpApimSubscriptionKey:
-      name: Ocp-Apim-Subscription-Key
-      in: header
-      required: true
-      description: The subscription key that you received when you signed up for this service in Azure Portal.
-      schema:
-        type: string
-    cc:
-      name: cc
-      in: query
-      required: false
-      description: A 2-character country code of the country where the results come from. If you set this parameter, you must also specify the Accept-Language header. This parameter and the mkt query parameter are mutually exclusive.
-      schema:
-        type: string
-        minLength: 2
-        maxLength: 2
-        example: US
+            $ref: '#/components/schemas/Topic'
   headers:
+    BingAPIs-Market:
+      description: The market used by the request. The form is <languageCode>-<countryCode>. For example, en-US.
+      schema:
+        type: string
     BingAPIs-TraceId:
       description: The ID of the log entry that contains the details of the request. Capture this ID when an error occurs.
       schema:
         type: string
     X-MSEdge-ClientID:
       description: Bing uses this header to provide users with consistent behavior across Bing API calls. Persist and reuse across sessions for a given user on a given device.
-      schema:
-        type: string
-    BingAPIs-Market:
-      description: The market used by the request. The form is <languageCode>-<countryCode>. For example, en-US.
       schema:
         type: string
   securitySchemes:
