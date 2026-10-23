@@ -268,3 +268,9 @@ components:
 externalDocs:
   description: Bing News Search API Documentation
   url: https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/overview
+x-provenance:
+  method: harvested
+  publisher: Bing News Search
+  source: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/NewsSearch/stable/v1.0/NewsSearch.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
