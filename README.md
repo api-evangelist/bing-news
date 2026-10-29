@@ -64,44 +64,117 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Microsoft Bing News Search REST API enables developers to retrieve relevant news articles,
-trending topics, and category-filtered news with image thumbnails and publisher metadata.
-The API provides search queries against Bing's news index, returning results with titles,
-descriptions, URLs, publication dates, and related media content.
+> **No longer operating.** This company or product has shut down, been discontinued, or been deprecated. This profile is kept as a historical record and is not maintained or rated.
 
-This repository contains an APIs.json 0.19 provider profile for the Bing News Search API.
+Microsoft Bing News Search REST API enables developers to retrieve relevant news articles, trending topics, and category-filtered news with image thumbnails and publisher metadata. The API provides search queries against Bing's news index, returning results with titles, descriptions, URLs, publication dates, and related media content.
 
-## Endpoints
+**Areas:** News · Search · Microsoft · Bing · Media · Headlines · Trending Topics · Defunct
 
-| Endpoint | Description |
-|----------|-------------|
-| `GET https://api.bing.microsoft.com/v7.0/news/search` | Returns news articles relevant to a search query |
-| `GET https://api.bing.microsoft.com/v7.0/news` | Returns top news articles by category |
-| `GET https://api.bing.microsoft.com/v7.0/news/trendingtopics` | Returns news topics trending on social networks |
+## Bing News Search on APIs.io (historical record)
 
-## Authentication
+Everything profiled for Bing News Search is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/bing-news/](https://apis.io/providers/bing-news/)** — or go straight to one of the APIs or properties below.
 
-All requests require the `Ocp-Apim-Subscription-Key` header containing a valid Azure subscription key.
+### APIs (5)
 
-## Repository Structure
+- [Bing News Category API](https://apis.io/apis/bing-news/news-category/) — Returns top news articles filtered by category (e.g., Business, Entertainment, Sports, Health, ScienceAndTechnology, Politics, World). Supports multiple…
+- [Bing Trending News Topics API](https://apis.io/apis/bing-news/trending-topics/) — Returns news topics that are currently trending on social networks. Supports filtering by Unix epoch timestamp (since parameter) to retrieve topics…
+- [Bing News Search News Category API](https://apis.io/apis/bing-news/bing-news-news-category-api/) — Get top news articles by category
+- [Bing News Search News Search API](https://apis.io/apis/bing-news/bing-news-news-search-api/) — Search for news articles by keyword query
+- [Bing News Search Trending Topics API](https://apis.io/apis/bing-news/bing-news-trending-topics-api/) — Get currently trending news topics from social networks
 
-- `apis.yml` - APIs.json 0.19 provider profile
-- `plans/bing-news-plans-pricing.yml` - Pricing tiers (Free F1, Standard S1)
-- `rate-limits/bing-news-rate-limits.yml` - Rate limits and endpoint parameters
-- `finops/bing-news-finops.yml` - FinOps / FOCUS-aligned cost management definitions
+### Published properties
 
-## Notes
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-The Bing Search Services public APIs were retired on August 11, 2025. Microsoft's
-replacement path is Grounding with Bing Search, available inside Azure AI Foundry.
+#### Agentic access (1)
 
-## Links
+Which operations an agent can call, which act, and which need a human in the loop.
 
+- [Bing News Agentic Access](https://apis.io/agentic-access/bing-news/bing-news-agentic-access/)
+
+#### JSON Schema (2)
+
+The data models the API reads and writes.
+
+- [NewsArticle](https://apis.io/schemas/bing-news/news-article/)
+- [TrendingTopic](https://apis.io/schemas/bing-news/trending-topic/)
+
+#### Examples (3)
+
+Example requests and responses.
+
+- [News Category Response](https://apis.io/examples/bing-news/news-category-response/)
+- [News Search Response](https://apis.io/examples/bing-news/news-search-response/)
+- [Trending Topics Response](https://apis.io/examples/bing-news/trending-topics-response/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [Bing News Search API v7 News Category API](https://apis.io/collections/bing-news/open-bing-news-news-category-api/)
+- [Bing API v7 News Category News Search API](https://apis.io/collections/bing-news/open-bing-news-news-search-api/)
+- [Bing News Search API v7 News Category Trending Topics API](https://apis.io/collections/bing-news/open-bing-news-trending-topics-api/)
+- [Bing News Search API v7 News Category API](https://apis.io/collections/bing-news/postman-bing-news-news-category-api/)
+- [Bing API v7 News Category News Search API](https://apis.io/collections/bing-news/postman-bing-news-news-search-api/)
+- [Bing News Search API v7 News Category Trending Topics API](https://apis.io/collections/bing-news/postman-bing-news-trending-topics-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Bing News Search — jsonschema rules](https://apis.io/rules/bing-news/bing-news-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Bing News Authentication](https://apis.io/security/bing-news/bing-news-authentication/)
+- [Bing News Domain Security](https://apis.io/security/bing-news/bing-news-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Bing News Plans Pricing](https://apis.io/plans/bing-news/bing-news-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Bing News Rate Limits](https://apis.io/rate-limits/bing-news/bing-news-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Bing News Finops](https://apis.io/finops/bing-news/bing-news-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.bing.com/news)
 - [Documentation](https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/overview)
-- [API Reference](https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/reference/endpoints)
+- [Getting started](https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/quickstarts/quickstarts)
+- [API reference](https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-news-search/reference/endpoints)
 - [Pricing](https://www.microsoft.com/en-us/bing/apis/pricing)
-- [Terms of Service](https://www.microsoft.com/en-us/bing/apis/legal)
+- [Support](https://learn.microsoft.com/en-us/answers/tags/142/bing-category-bing-search-apis-azure-bing-news)
+- [Terms of service](https://www.microsoft.com/en-us/bing/apis/legal)
+- [Privacy policy](https://privacy.microsoft.com/en-us/privacystatement)
+- [GitHub](https://github.com/microsoft)
 
-## Maintainer
+## API Evangelist rating
 
-Kin Lane (kin@apievangelist.com)
+**Not rated** — this company is recorded as no longer operating, so no score is published. If it is in fact operating, say so on this repository and it will be re-profiled.
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Bing News Search: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/bing-news/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
